@@ -7,6 +7,15 @@ import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 export const LoginForm = ({ setCurrentUser }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState("");
+  const [errors, setErrors] = useState(false);
+
+  const handleChange = name => e => {
+    setUserInputs({ ...userInputs, [name]: e.target.value });
+  };
+
+  const handleError = name => {
+    setErrors({ ...errors, [name]: true });
+  };
 
   const loginUser = () => {
     // validate user input
@@ -24,15 +33,12 @@ export const LoginForm = ({ setCurrentUser }) => {
       .catch(err => {
         console.log(err);
         setIsButtonLoading(false);
+        handleError("password");
       });
   };
 
-  const handleChange = name => e => {
-    setUserInputs({ ...userInputs, [name]: e.target.value });
-  };
-
   const useStyles = makeStyles(theme => ({
-    button: {
+    input: {
       margin: theme.spacing(1)
     }
   }));
@@ -40,9 +46,9 @@ export const LoginForm = ({ setCurrentUser }) => {
   const classes = useStyles();
 
   return (
-    <div className="d-flex flex-column w-50">
+    <div className="d-flex flex-column w-50 ">
       <TextField
-        className={classes.button}
+        className={classes.input}
         label="Name"
         value={userInputs.username}
         onChange={handleChange("username")}
@@ -50,7 +56,8 @@ export const LoginForm = ({ setCurrentUser }) => {
       />
 
       <TextField
-        className={classes.button}
+        error={Boolean(errors.password)}
+        className={classes.input}
         label="Password"
         type="password"
         autoComplete="current-password"
@@ -59,7 +66,7 @@ export const LoginForm = ({ setCurrentUser }) => {
         value={userInputs.password}
       />
 
-      <div>
+      <div className="mx-auto">
         <ButtonWithLoader
           isLoading={isButtonLoading}
           onClick={() => {
@@ -71,6 +78,7 @@ export const LoginForm = ({ setCurrentUser }) => {
               ? true
               : (!userInputs.username || !userInputs.password) && true
           }
+          className="m-auto"
         >
           Login
         </ButtonWithLoader>
