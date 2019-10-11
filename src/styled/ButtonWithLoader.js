@@ -11,8 +11,7 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
 
   const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
-      padding: "10px"
+      margin: theme.spacing(1)
     }
   }));
 
@@ -51,7 +50,6 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
     }
   }, [children]);
 
-  // Hooks used to fade in/out the loader or the button contents
   return (
     <Button
       {...props}
@@ -59,16 +57,23 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
       variant="contained"
       color="primary"
       className={classes.button}
-      style={
-        showLoader
-          ? {
-              width: `${width}px`,
-              height: `${height}px`
-            }
-          : {}
+      endIcon={
+        showLoader && (
+          <Icon fill="#dede" width="25px" height="25px">
+            send
+          </Icon>
+        )
       }
+      // style={
+      //   showLoader
+      //     ? {
+      //         width: `${width}px`,
+      //         height: `${height}px`
+      //       }
+      //     : {}
+      // }
     >
-      {showLoader ? <Icon fill="#eee" width="30px" height="30px" /> : children}
+      {children}
     </Button>
   );
 }
