@@ -3,7 +3,7 @@ import React from "react";
 export const Loader = ({ fill }) => (
   <>
     <svg
-      class="lds-spinner"
+      className="lds-spinner"
       width="200px"
       height="200px"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
-// User components
+// Components
 import { Loader } from "./styled/Loader";
-import Navbar from "./components/Navbar";
+import { MyNavbar as Navbar } from "./components/Navbar";
 import { RoundImage as ProfileImage } from "./styled/RoundImage";
+// Pages
+import { UserProfilePage } from "./pages/UserProfilePage";
 
 class App extends React.Component {
   state = {
@@ -18,7 +20,7 @@ class App extends React.Component {
       .then(results => {
         console.log(results);
         this.setState({
-          users: [...results.data],
+          users: [...results.data.slice(0, 10)],
           loading: false
         });
       })
@@ -30,25 +32,25 @@ class App extends React.Component {
     return (
       <>
         <Navbar />
-        <h1>Home Page</h1>
         {loading ? (
           <>
             <Loader alt="loader" fill="yellow" />
           </>
         ) : (
-          <ul>
-            {users.map((user, index) => (
-              <li key={index}>
-                {user.id}: {user.username}
-                <ProfileImage
-                  imgUrl={user.profileImage}
-                  name={user.username}
-                  width={"180px"}
-                  height={"180px"}
-                />
-              </li>
-            ))}
-          </ul>
+          <UserProfilePage />
+          // <ul>
+          //   {users.map((user, index) => (
+          //     <li key={index}>
+          //       {user.id}: {user.username}
+          //       <ProfileImage
+          //         imgUrl={user.profileImage}
+          //         name={user.username}
+          //         width={"180px"}
+          //         height={"180px"}
+          //       />
+          //     </li>
+          //   ))}
+          // </ul>
         )}
       </>
     );
