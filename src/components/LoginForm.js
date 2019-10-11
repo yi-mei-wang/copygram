@@ -47,7 +47,6 @@ export const LoginForm = ({ setCurrentUser }) => {
         value={userInputs.username}
         onChange={handleChange("username")}
         margin="normal"
-        variant="outlined"
       />
 
       <TextField
@@ -56,7 +55,6 @@ export const LoginForm = ({ setCurrentUser }) => {
         type="password"
         autoComplete="current-password"
         margin="normal"
-        variant="outlined"
         onChange={handleChange("password")}
         value={userInputs.password}
       />
