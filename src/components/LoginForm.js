@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
@@ -68,12 +68,11 @@ export const LoginForm = ({ setCurrentUser }) => {
             setIsButtonLoading(true);
             loginUser();
           }}
-          // disabled={
-          //   !userInputs
-          //     ? true
-          //     : userInputs.username.length < 6 ||
-          //       (userInputs.password.length < 6 && true)
-          // }
+          disabled={
+            !userInputs
+              ? true
+              : (!userInputs.username || !userInputs.password) && true
+          }
         >
           Login
         </ButtonWithLoader>
