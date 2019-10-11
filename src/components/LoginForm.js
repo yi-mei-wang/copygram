@@ -1,24 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-import { Loader as Icon } from "../styled/Loader";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 
 export const LoginForm = ({ setCurrentUser }) => {
-  const [isButtonLoading, setIsButtonLoading] = React.useState(false);
-  const [loadingSpeed, setLoadingSpeed] = React.useState(1);
-
-  React.useEffect(() => {
-    if (isButtonLoading) {
-      setTimeout(() => {
-        setIsButtonLoading(false);
-      }, 1000 / loadingSpeed);
-    }
-  }, [isButtonLoading, loadingSpeed]);
-
+  const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState("");
 
   const loginUser = () => {
@@ -29,12 +16,15 @@ export const LoginForm = ({ setCurrentUser }) => {
         password: userInputs.password
       })
       .then(result => {
-        console.log(result.data);
         const { auth_token, user } = result.data;
         localStorage.setItem("jwt", auth_token);
         setCurrentUser(user);
+        setIsButtonLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setIsButtonLoading(false);
+      });
   };
 
   const handleChange = name => e => {
@@ -50,15 +40,7 @@ export const LoginForm = ({ setCurrentUser }) => {
   const classes = useStyles();
 
   return (
-    <>
-      <button
-        onClick={() => {
-          loginUser();
-        }}
-      >
-        Login
-      </button>
-
+    <div className="d-flex flex-column w-50">
       <TextField
         className={classes.button}
         label="Name"
@@ -79,25 +61,23 @@ export const LoginForm = ({ setCurrentUser }) => {
         value={userInputs.password}
       />
 
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        endIcon={
-          <Icon fill="#dede" width="30px" height="30px">
-            send
-          </Icon>
-        }
-      >
-        Send
-      </Button>
-
-      <ButtonWithLoader
-        isLoading={isButtonLoading}
-        onClick={() => setIsButtonLoading(true)}
-      >
-        Login
-      </ButtonWithLoader>
-    </>
+      <div>
+        <ButtonWithLoader
+          isLoading={isButtonLoading}
+          onClick={() => {
+            setIsButtonLoading(true);
+            loginUser();
+          }}
+          // disabled={
+          //   !userInputs
+          //     ? true
+          //     : userInputs.username.length < 6 ||
+          //       (userInputs.password.length < 6 && true)
+          // }
+        >
+          Login
+        </ButtonWithLoader>
+      </div>
+    </div>
   );
 };

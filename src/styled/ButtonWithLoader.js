@@ -18,20 +18,7 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
   const classes = useStyles();
 
   useEffect(() => {
-    if (isLoading) {
-      setShowLoader(true);
-    }
-
-    // Show loader a bits longer to avoid loading flash
-    if (!isLoading && showLoader) {
-      const timeout = setTimeout(() => {
-        setShowLoader(false);
-      }, 400);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
+    isLoading ? setShowLoader(true) : setShowLoader(false);
   }, [isLoading, showLoader]);
 
   /* Capture the dimensions of the button before the loading happens
@@ -64,14 +51,13 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
           </Icon>
         )
       }
-      // style={
-      //   showLoader
-      //     ? {
-      //         width: `${width}px`,
-      //         height: `${height}px`
-      //       }
-      //     : {}
-      // }
+      style={
+        showLoader
+          ? {
+              height: `${height}px`
+            }
+          : {}
+      }
     >
       {children}
     </Button>
