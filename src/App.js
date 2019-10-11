@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 // Components
 import { Loader } from "./styled/Loader";
+import { LoginForm } from "./components/LoginForm";
+
 import { MyNavbar as Navbar } from "./components/Navbar";
 import { RoundImage as ProfileImage } from "./styled/RoundImage";
 // Pages
@@ -10,7 +12,14 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 class App extends React.Component {
   state = {
     users: [],
-    loading: true
+    loading: true,
+    currentUser: null
+  };
+
+  setCurrentUser = user => {
+    this.setState({
+      currentUser: user
+    });
   };
 
   // Gets called after initial render and only gets called ONCE
@@ -28,16 +37,19 @@ class App extends React.Component {
   }
 
   render() {
-    let { users, loading } = this.state;
+    let { users, loading, currentUser } = this.state;
     return (
       <>
         <Navbar />
-        {loading ? (
+        {currentUser ? (
           <>
             <Loader alt="loader" fill="yellow" />
           </>
         ) : (
-          <UserProfilePage />
+          <>
+            <LoginForm setCurrentUser={this.setCurrentUser} />
+            <UserProfilePage />
+          </>
           // <ul>
           //   {users.map((user, index) => (
           //     <li key={index}>

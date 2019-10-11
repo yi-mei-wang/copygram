@@ -13,14 +13,14 @@ export class UserProfilePage extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("https://insta.nextacademy.com/api/v1/images/me")
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // axios
+    //   .get("https://insta.nextacademy.com/api/v1/images/me")
+    //   .then(result => {
+    //     console.log(result);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
   render() {
     const { imgUrls } = this.state;
