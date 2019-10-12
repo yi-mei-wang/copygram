@@ -43,7 +43,7 @@ class App extends React.Component {
         <Navbar />
         {currentUser ? (
           <>
-            <Loader alt="loader" fill="yellow" />
+            <Loader alt="loader" fill="yellow" width="125px" height="125px" />
           </>
         ) : (
           <>

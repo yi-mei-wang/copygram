@@ -46,7 +46,10 @@ export const LoginForm = ({ setCurrentUser }) => {
   const classes = useStyles();
 
   return (
-    <div className="d-flex flex-column w-50 ">
+    <div
+      className="d-flex flex-column w-50"
+      style={{ border: "1px solid #eee", padding: "10px" }}
+    >
       <TextField
         className={classes.input}
         label="Name"

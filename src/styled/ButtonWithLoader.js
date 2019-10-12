@@ -44,22 +44,30 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
       variant="contained"
       color="primary"
       className={classes.button}
-      endIcon={
-        showLoader && (
-          <Icon fill="#dede" width="25px" height="25px">
-            send
-          </Icon>
-        )
-      }
+      // endIcon={
+      //   showLoader && (
+      //     <Icon fill="#dede" width="25px" height="25px">
+      //       send
+      //     </Icon>
+      //   )
+      // }
       style={
         showLoader
           ? {
+              width: `${width}px`,
               height: `${height}px`
             }
           : {}
       }
     >
-      {children}
+      {/* {children} */}
+      {showLoader ? (
+        <Icon fill="#dede" width="25px" height="25px">
+          send
+        </Icon>
+      ) : (
+        children
+      )}
     </Button>
   );
 }
