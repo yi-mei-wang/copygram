@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // Components
@@ -12,9 +13,21 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 class App extends React.Component {
   state = {
     users: [],
-    loading: true,
+    lsLoading: true,
     currentUser: null
   };
+
+  componentDidMount() {
+    axios
+      .get("https://insta.nextacademy.com/api/v1/users")
+      .then(results => {
+        this.setState({
+          users: [...results.data.slice(0, 10)],
+          isLoading: false
+        });
+      })
+      .catch(error => console.log(error));
+  }
 
   setCurrentUser = user => {
     this.setState({
@@ -23,12 +36,12 @@ class App extends React.Component {
   };
 
   render() {
-    let { users, loading, currentUser } = this.state;
+    let { users, isLoading, currentUser } = this.state;
     return (
       <>
         <Router>
           <Navbar />
-          {currentUser ? (
+          {/* {currentUser ? (
             <>
               <Loader alt="loader" fill="yellow" width="125px" height="125px" />
             </>
@@ -37,7 +50,7 @@ class App extends React.Component {
               <LoginForm setCurrentUser={this.setCurrentUser} />
               <UserProfilePage />
             </>
-          )}
+          )} */}
 
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -49,7 +62,7 @@ class App extends React.Component {
               <UserProfilePage />
             </Route>
             <Route exact path="/">
-              <Homepage />
+              <Homepage users={users} isLoading={isLoading} />
             </Route>
           </Switch>
         </Router>
