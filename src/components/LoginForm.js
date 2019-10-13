@@ -1,14 +1,14 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
+import { loginUser as loginUserCall } from "../APICalls/loginUser";
 
 export const LoginForm = ({ setCurrentUser, history }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState("");
   const [errors, setErrors] = useState(false);
-  const signal = axios.CancelToken.source();
 
   const handleChange = name => e => {
     setUserInputs({ ...userInputs, [name]: e.target.value });
@@ -18,36 +18,23 @@ export const LoginForm = ({ setCurrentUser, history }) => {
     setErrors({ ...errors, [name]: true });
   };
 
-  const loginUser = () => {
+  const loginUser = async () => {
     // validate user input
-    axios
-      .post(
+    try {
+      const { auth_token, user } = await loginUserCall(
         "https://insta.nextacademy.com/api/v1/login",
-        {
-          username: userInputs.username,
-          password: userInputs.password
-        },
-        {
-          cancelToken: signal.token
-        }
-      )
-      .then(resp => {
-        const { auth_token, user } = resp.data;
-        localStorage.setItem("jwt", auth_token);
-        setCurrentUser(user);
-        // setIsButtonLoading(false);
-        history.push({
-          pathname: "/"
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        if (axios.isCancel(err)) {
-          console.log("post Request canceled");
-        }
-        setIsButtonLoading(false);
-        handleError("password");
+        userInputs
+      );
+      localStorage.setItem("jwt", auth_token);
+      setCurrentUser(user);
+      history.push({
+        pathname: "/"
       });
+    } catch (err) {
+      console.log(err);
+      setIsButtonLoading(false);
+      handleError("password");
+    }
   };
 
   const useStyles = makeStyles(theme => ({
