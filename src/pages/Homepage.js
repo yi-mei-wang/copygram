@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { Loader } from "../styled/Loader";
 import { RoundImage as ProfileImage } from "../styled/RoundImage";

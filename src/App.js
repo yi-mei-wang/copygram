@@ -1,9 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Components
-import { Loader } from "./styled/Loader";
-import { LoginForm } from "./components/LoginForm";
 import { MyNavbar as Navbar } from "./components/Navbar";
 // Pages
 import { Homepage } from "./pages/Homepage";
@@ -40,24 +38,21 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <Navbar />
-          {/* {currentUser ? (
-            <>
-              <Loader alt="loader" fill="yellow" width="125px" height="125px" />
-            </>
-          ) : (
-            <>
-              <LoginForm setCurrentUser={this.setCurrentUser} />
-              <UserProfilePage />
-            </>
-          )} */}
+          <Navbar currentUser={currentUser} />
 
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
-            <Route path="/login">
-              <LoginPage />
-            </Route>
+            <Route
+              path="/login"
+              component={props =>
+                currentUser ? (
+                  <Homepage {...props} users={users} isLoading={isLoading} />
+                ) : (
+                  <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
+                )
+              }
+            />
             <Route exact path="/users/me">
               <UserProfilePage />
             </Route>

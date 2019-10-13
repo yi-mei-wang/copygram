@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 
-export const LoginForm = ({ setCurrentUser }) => {
+export const LoginForm = ({ setCurrentUser, history }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState("");
   const [errors, setErrors] = useState(false);
@@ -18,17 +18,22 @@ export const LoginForm = ({ setCurrentUser }) => {
   };
 
   const loginUser = () => {
+    const abortController = new AbortController()
+    // const
     // validate user input
     axios
       .post("https://insta.nextacademy.com/api/v1/login", {
         username: userInputs.username,
         password: userInputs.password
       })
-      .then(result => {
-        const { auth_token, user } = result.data;
+      .then(resp => {
+        const { auth_token, user } = resp.data;
         localStorage.setItem("jwt", auth_token);
         setCurrentUser(user);
         setIsButtonLoading(false);
+        history.push({
+          pathname: "/homepage"
+        });
       })
       .catch(err => {
         console.log(err);
@@ -47,7 +52,7 @@ export const LoginForm = ({ setCurrentUser }) => {
 
   return (
     <div
-      className="d-flex flex-column w-50"
+      className="d-flex flex-column w-50 mx-auto"
       style={{ border: "1px solid #eee", padding: "10px" }}
     >
       <TextField
