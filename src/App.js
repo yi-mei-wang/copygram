@@ -45,13 +45,9 @@ class App extends React.Component {
           <Switch>
             <Route
               path="/login"
-              component={props =>
-                currentUser ? (
-                  <Homepage {...props} users={users} isLoading={isLoading} />
-                ) : (
-                  <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
-                )
-              }
+              component={props => (
+                <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
+              )}
             />
             <Route exact path="/users/me">
               <UserProfilePage />

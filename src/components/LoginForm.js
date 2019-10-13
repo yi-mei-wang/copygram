@@ -8,6 +8,7 @@ export const LoginForm = ({ setCurrentUser, history }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState("");
   const [errors, setErrors] = useState(false);
+  const signal = axios.CancelToken.source();
 
   const handleChange = name => e => {
     setUserInputs({ ...userInputs, [name]: e.target.value });
@@ -18,25 +19,32 @@ export const LoginForm = ({ setCurrentUser, history }) => {
   };
 
   const loginUser = () => {
-    const abortController = new AbortController()
-    // const
     // validate user input
     axios
-      .post("https://insta.nextacademy.com/api/v1/login", {
-        username: userInputs.username,
-        password: userInputs.password
-      })
+      .post(
+        "https://insta.nextacademy.com/api/v1/login",
+        {
+          username: userInputs.username,
+          password: userInputs.password
+        },
+        {
+          cancelToken: signal.token
+        }
+      )
       .then(resp => {
         const { auth_token, user } = resp.data;
         localStorage.setItem("jwt", auth_token);
         setCurrentUser(user);
-        setIsButtonLoading(false);
+        // setIsButtonLoading(false);
         history.push({
-          pathname: "/homepage"
+          pathname: "/"
         });
       })
       .catch(err => {
         console.log(err);
+        if (axios.isCancel(err)) {
+          console.log("post Request canceled");
+        }
         setIsButtonLoading(false);
         handleError("password");
       });
