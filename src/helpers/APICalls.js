@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const loginUser = async (url, credentials) => {
+const loginUserCall = async (url, credentials) => {
   try {
     const {
       data: { auth_token, user }
@@ -13,3 +13,5 @@ export const loginUser = async (url, credentials) => {
     throw err;
   }
 };
+
+export { loginUserCall };

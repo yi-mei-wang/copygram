@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
-import { loginUser as loginUserCall } from "../APICalls/loginUser";
+import { loginUserCall } from "../helpers/APICalls";
 
 export const LoginForm = ({ setCurrentUser, history }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
