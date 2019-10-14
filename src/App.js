@@ -3,11 +3,13 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // Components
 import { MyNavbar as Navbar } from "./components/Navbar";
+import { Loader } from "./styled/Loader";
 // Pages
 import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
+import { fetchAllUsers } from "./helpers/APICalls";
 import { PrivateRoute } from "./helpers/privateRoute";
 
 class App extends React.Component {
@@ -15,23 +17,21 @@ class App extends React.Component {
 
   state = {
     users: [],
-    lsLoading: true,
+    isLoading: true,
     currentUser: null
   };
 
-  componentDidMount() {
-    axios
-      .get("https://insta.nextacademy.com/api/v1/users")
-      .then(results => {
-        this.setState({
-          users: [...results.data.slice(0, 10)],
-          isLoading: false
-        });
-      })
-      .catch(error => console.log(error));
+  async componentDidMount() {
+    const data = await fetchAllUsers(
+      "https://insta.nextacademy.com/api/v1/users"
+    );
+    this.setState({
+      users: [...data.slice(0, 10)],
+      isLoading: false
+    });
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     this.signal.cancel("Api is being cancelled");
   }
 
@@ -47,9 +47,11 @@ class App extends React.Component {
       <>
         <Router>
           <Navbar currentUser={currentUser} />
-
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
+          {/* {isLoading ? (
+            <Loader fill="#333" width="200px" height="200px" />
+          ) : ( */}
           <Switch>
             <Route
               path="/login"
@@ -64,6 +66,7 @@ class App extends React.Component {
               <Homepage users={users} isLoading={isLoading} />
             </PrivateRoute>
           </Switch>
+          )}
         </Router>
       </>
     );
