@@ -47,25 +47,26 @@ class App extends React.Component {
       <>
         <Router>
           <Navbar currentUser={currentUser} />
+
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-          {/* {isLoading ? (
+          {isLoading ? (
             <Loader fill="#333" width="200px" height="200px" />
-          ) : ( */}
-          <Switch>
-            <Route
-              path="/login"
-              component={props => (
-                <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
-              )}
-            />
-            <PrivateRoute exact path="/users/me">
-              <UserProfilePage />
-            </PrivateRoute>
-            <PrivateRoute exact path="/">
-              <Homepage users={users} isLoading={isLoading} />
-            </PrivateRoute>
-          </Switch>
+          ) : (
+            <Switch>
+              <Route
+                path="/login"
+                component={props => (
+                  <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
+                )}
+              />
+              <PrivateRoute exact path="/users/me">
+                <UserProfilePage />
+              </PrivateRoute>
+              <PrivateRoute exact path="/">
+                <Homepage users={users} isLoading={isLoading} />
+              </PrivateRoute>
+            </Switch>
           )}
         </Router>
       </>
