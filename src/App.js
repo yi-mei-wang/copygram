@@ -18,7 +18,7 @@ class App extends React.Component {
   state = {
     users: [],
     isLoading: true,
-    currentUser: null
+    currentUser: localStorage.getItem("jwt")
   };
 
   async componentDidMount() {
@@ -62,7 +62,7 @@ class App extends React.Component {
                 )}
               />
               <PrivateRoute exact path="/users/me">
-                <UserProfilePage />
+                <UserProfilePage currentUser={currentUser} />
               </PrivateRoute>
               <PrivateRoute exact path="/">
                 <Homepage users={users} isLoading={isLoading} />

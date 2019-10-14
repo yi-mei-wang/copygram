@@ -5,19 +5,24 @@ import { UserProfileCard } from "../components/UserProfileCard";
 
 export class UserProfilePage extends React.Component {
   state = {
-    imgUrls: []
+    imgUrls: [],
+    username: null,
+    profileImage: null
   };
 
   componentDidMount() {
     axios
-      .get("https://insta.nextacademy.com/api/v1/images/me", {
+      .get("https://insta.nextacademy.com/api/v1/users/me", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`
         }
       })
-      .then(result => {
+      .then(resp => {
+        console.log(resp);
         this.setState({
-          imgUrls: [...result.data]
+          // imgUrls: [...resp.data]
+          username: resp.data.username,
+          profileImage: resp.data.profile_picture
         });
       })
       .catch(error => {
@@ -25,14 +30,19 @@ export class UserProfilePage extends React.Component {
       });
   }
   render() {
-    const { imgUrls } = this.state;
-    const { username, profileImage } = this.props;
+    const { imgUrls, username, profileImage } = this.state;
     return (
       <>
-        <UserProfileCard username={(username, profileImage)} />
-        {/* A card to show the user info, such as profile image */}
+        <UserProfileCard username={username} profileImage={profileImage} />
+
         {imgUrls.map((url, index) => (
-          <RoundImage imgUrl={url} width="100px" height="100px" key={index} />
+          <RoundImage
+            src={url}
+            width="100px"
+            height="100px"
+            key={index}
+            alt="User posts"
+          />
         ))}
       </>
     );

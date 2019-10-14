@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -26,6 +25,7 @@ export const LoginForm = ({ setCurrentUser, history }) => {
         userInputs
       );
       localStorage.setItem("jwt", auth_token);
+      localStorage.setItem("jwt", auth_token);
       setCurrentUser(user);
       history.push({
         pathname: "/"
@@ -47,7 +47,7 @@ export const LoginForm = ({ setCurrentUser, history }) => {
 
   return (
     <div
-      className="d-flex flex-column w-50 mx-auto"
+      className="d-flex flex-column w-50 mx-auto my-3"
       style={{ border: "1px solid #eee", padding: "10px" }}
     >
       <TextField

@@ -11,10 +11,10 @@ export const Homepage = ({ users, isLoading }) => {
         <li key={index}>
           {user.id}: {user.username}
           <ProfileImage
-            imgUrl={user.profileImage}
-            name={user.username}
+            src={user.profileImage}
             width={"180px"}
             height={"180px"}
+            alt="User avatar"
           />
         </li>
       ))}

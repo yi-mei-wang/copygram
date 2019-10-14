@@ -7,13 +7,8 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-export const RoundImage = ({ imgUrl, width, height }) => (
+export const RoundImage = ({ src, width, height, alt }) => (
   <>
-    <StyledImage
-      src={imgUrl}
-      alt="profile avatar"
-      width={width}
-      height={height}
-    />
+    <StyledImage src={src} width={width} height={height} alt={alt} />
   </>
 );
