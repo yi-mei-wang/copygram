@@ -7,6 +7,8 @@ import { MyNavbar as Navbar } from "./components/Navbar";
 import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
+// Helpers
+import { PrivateRoute } from "./helpers/privateRoute";
 
 class App extends React.Component {
   state = {
@@ -49,12 +51,12 @@ class App extends React.Component {
                 <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
               )}
             />
-            <Route exact path="/users/me">
+            <PrivateRoute exact path="/users/me" currentUser={currentUser}>
               <UserProfilePage />
-            </Route>
-            <Route exact path="/">
+            </PrivateRoute>
+            <PrivateRoute exact path="/" currentUser={currentUser}>
               <Homepage users={users} isLoading={isLoading} />
-            </Route>
+            </PrivateRoute>
           </Switch>
         </Router>
       </>

@@ -3,12 +3,12 @@ import { Redirect, Route } from "react-router-dom";
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ children, currentUser, ...rest }) => {
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        fakeAuth.isAuthenticated ? (
+        currentUser ? (
           children
         ) : (
           <Redirect
