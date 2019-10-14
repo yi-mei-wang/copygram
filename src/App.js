@@ -23,7 +23,8 @@ class App extends React.Component {
 
   async componentDidMount() {
     const data = await fetchAllUsers(
-      "https://insta.nextacademy.com/api/v1/users"
+      "https://insta.nextacademy.com/api/v1/users",
+      this.signal.token
     );
     this.setState({
       users: [...data.slice(0, 10)],
