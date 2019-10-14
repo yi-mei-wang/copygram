@@ -31,8 +31,8 @@ export class UserProfilePage extends React.Component {
       <>
         <UserProfileCard username={(username, profileImage)} />
         {/* A card to show the user info, such as profile image */}
-        {imgUrls.map(url => (
-          <RoundImage imgUrl={url} width="100px" height="100px" />
+        {imgUrls.map((url, index) => (
+          <RoundImage imgUrl={url} width="100px" height="100px" key={index} />
         ))}
       </>
     );

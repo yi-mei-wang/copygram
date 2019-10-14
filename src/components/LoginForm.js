@@ -7,7 +7,7 @@ import { loginUserCall } from "../helpers/APICalls";
 
 export const LoginForm = ({ setCurrentUser, history }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
-  const [userInputs, setUserInputs] = useState("");
+  const [userInputs, setUserInputs] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState(false);
 
   const handleChange = name => e => {
