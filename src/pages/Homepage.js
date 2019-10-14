@@ -4,7 +4,7 @@ import { RoundImage as ProfileImage } from "../styled/RoundImage";
 
 export const Homepage = ({ users, isLoading }) => {
   return isLoading ? (
-    <Loader alt="loader" fill="yellow" width="125px" height="125px" />
+    <Loader alt="loader" fill="orange" width="125px" height="125px" />
   ) : (
     <ul>
       {users.map((user, index) => (

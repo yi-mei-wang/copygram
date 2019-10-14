@@ -9,7 +9,7 @@ import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
-import { fetchAllUsers } from "./helpers/APICalls";
+import { getData } from "./helpers/APICalls";
 import { PrivateRoute } from "./helpers/privateRoute";
 
 class App extends React.Component {
@@ -22,12 +22,22 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const data = await fetchAllUsers(
+    // const resp = await fetchAllUsers(
+    //   "https://insta.nextacademy.com/api/v1/users",
+    //   this.signal.token
+    // );
+    // this.setState({
+    //   users: [...resp.data.slice(0, 10)],
+    //   isLoading: false
+    // });
+    // console.log(data);
+    const resp = await getData(
       "https://insta.nextacademy.com/api/v1/users",
-      this.signal.token
+      {}
     );
+
     this.setState({
-      users: [...data.slice(0, 10)],
+      users: [...resp.data.slice(0, 10)],
       isLoading: false
     });
   }
@@ -52,7 +62,7 @@ class App extends React.Component {
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           {isLoading ? (
-            <Loader fill="#333" width="200px" height="200px" />
+            <Loader fill="orange" width="200px" height="200px" />
           ) : (
             <Switch>
               <Route

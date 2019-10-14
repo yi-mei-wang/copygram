@@ -1,7 +1,8 @@
 import React from "react";
 import { RoundImage } from "../styled/RoundImage";
 import { UserProfileCard } from "../components/UserProfileCard";
-import { fetchUserImages } from "../helpers/APICalls";
+import { getData } from "../helpers/APICalls";
+import { UserImages } from "../components/UserImages";
 
 export class UserProfilePage extends React.Component {
   state = {
@@ -12,7 +13,7 @@ export class UserProfilePage extends React.Component {
 
   async componentDidMount() {
     try {
-      const resp = await fetchUserImages(
+      const resp = await getData(
         "https://insta.nextacademy.com/api/v1/users/me",
         {
           headers: {
@@ -20,6 +21,7 @@ export class UserProfilePage extends React.Component {
           }
         }
       );
+
       this.setState({
         username: resp.data.username,
         profileImage: resp.data.profile_picture
@@ -29,20 +31,13 @@ export class UserProfilePage extends React.Component {
     }
   }
   render() {
-    const { imgUrls, username, profileImage } = this.state;
+    const { username, profileImage } = this.state;
+    console.log(username, profileImage);
     return (
       <>
         <UserProfileCard username={username} profileImage={profileImage} />
 
-        {imgUrls.map((url, index) => (
-          <RoundImage
-            src={url}
-            width="100px"
-            height="100px"
-            key={index}
-            alt="User posts"
-          />
-        ))}
+        <UserImages />
       </>
     );
   }
