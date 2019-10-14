@@ -1,7 +1,7 @@
-import axios from "axios";
 import React from "react";
 import { RoundImage } from "../styled/RoundImage";
 import { UserProfileCard } from "../components/UserProfileCard";
+import { fetchUserImages } from "../helpers/APICalls";
 
 export class UserProfilePage extends React.Component {
   state = {
@@ -10,24 +10,23 @@ export class UserProfilePage extends React.Component {
     profileImage: null
   };
 
-  componentDidMount() {
-    axios
-      .get("https://insta.nextacademy.com/api/v1/users/me", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+  async componentDidMount() {
+    try {
+      const resp = await fetchUserImages(
+        "https://insta.nextacademy.com/api/v1/users/me",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+          }
         }
-      })
-      .then(resp => {
-        console.log(resp);
-        this.setState({
-          // imgUrls: [...resp.data]
-          username: resp.data.username,
-          profileImage: resp.data.profile_picture
-        });
-      })
-      .catch(error => {
-        console.log(error);
+      );
+      this.setState({
+        username: resp.data.username,
+        profileImage: resp.data.profile_picture
       });
+    } catch (err) {
+      console.log(err);
+    }
   }
   render() {
     const { imgUrls, username, profileImage } = this.state;

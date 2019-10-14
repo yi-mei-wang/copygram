@@ -29,4 +29,13 @@ const fetchAllUsers = async (url, cancelToken) => {
   }
 };
 
-export { loginUserCall, fetchAllUsers };
+const fetchUserImages = async (url, headers, cancelToken) => {
+  try {
+    const resp = await axios.get(url, headers, cancelToken);
+    return resp.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export { loginUserCall, fetchAllUsers, fetchUserImages };
