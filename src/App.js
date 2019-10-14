@@ -11,6 +11,8 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 import { PrivateRoute } from "./helpers/privateRoute";
 
 class App extends React.Component {
+  signal = axios.CancelToken.source();
+
   state = {
     users: [],
     lsLoading: true,
@@ -27,6 +29,10 @@ class App extends React.Component {
         });
       })
       .catch(error => console.log(error));
+  }
+
+  componentWillMount() {
+    this.signal.cancel("Api is being cancelled");
   }
 
   setCurrentUser = user => {
@@ -51,10 +57,10 @@ class App extends React.Component {
                 <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
               )}
             />
-            <PrivateRoute exact path="/users/me" currentUser={currentUser}>
+            <PrivateRoute exact path="/users/me">
               <UserProfilePage />
             </PrivateRoute>
-            <PrivateRoute exact path="/" currentUser={currentUser}>
+            <PrivateRoute exact path="/">
               <Homepage users={users} isLoading={isLoading} />
             </PrivateRoute>
           </Switch>
