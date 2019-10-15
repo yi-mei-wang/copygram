@@ -1,11 +1,8 @@
 import React from "react";
-import { Loader } from "../styled/Loader";
 import { RoundImage as ProfileImage } from "../styled/RoundImage";
 
-export const Homepage = ({ users, isLoading }) => {
-  return isLoading ? (
-    <Loader alt="loader" fill="orange" width="125px" height="125px" />
-  ) : (
+export const Homepage = ({ users }) => {
+  return (
     <ul>
       {users.map((user, index) => (
         <li key={index}>

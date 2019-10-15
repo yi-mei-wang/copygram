@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const AUTH_TOKEN = localStorage.getItem("jwt");
+axios.defaults.baseURL = "https://insta.nextacademy.com/api/v1";
+
 const loginUserCall = async (url, credentials) => {
   const signal = axios.CancelToken.source();
   try {
@@ -42,13 +45,29 @@ const loginUserCall = async (url, credentials) => {
 
 // export { loginUserCall, fetchAllUsers, fetchUserImages };
 
-const getData = (url, headers) => {
+const getDataWithAuth = path => {
   let data;
   try {
-    data = axios.get(url, headers);
+    data = axios.get(path, {
+      headers: {
+        Authorization: `Bearer ${AUTH_TOKEN}`
+      }
+    });
     return data;
   } catch (err) {
     console.log(err);
   }
 };
-export { getData, loginUserCall };
+
+const getData = path => {
+  let data;
+  try {
+    data = axios.get(path);
+    console.log(axios);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getData, getDataWithAuth, loginUserCall };

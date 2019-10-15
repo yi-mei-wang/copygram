@@ -1,7 +1,7 @@
 import React from "react";
 import { RoundImage } from "../styled/RoundImage";
 import { UserProfileCard } from "../components/UserProfileCard";
-import { getData } from "../helpers/APICalls";
+import { getDataWithAuth } from "../helpers/APICalls";
 import { UserImages } from "../components/UserImages";
 
 export class UserProfilePage extends React.Component {
@@ -13,14 +13,7 @@ export class UserProfilePage extends React.Component {
 
   async componentDidMount() {
     try {
-      const resp = await getData(
-        "https://insta.nextacademy.com/api/v1/users/me",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`
-          }
-        }
-      );
+      const resp = await getDataWithAuth("/users/me");
 
       this.setState({
         username: resp.data.username,
@@ -36,7 +29,6 @@ export class UserProfilePage extends React.Component {
     return (
       <>
         <UserProfileCard username={username} profileImage={profileImage} />
-
         <UserImages />
       </>
     );

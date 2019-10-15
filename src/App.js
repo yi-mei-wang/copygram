@@ -31,10 +31,8 @@ class App extends React.Component {
     //   isLoading: false
     // });
     // console.log(data);
-    const resp = await getData(
-      "https://insta.nextacademy.com/api/v1/users",
-      {}
-    );
+    const resp = await getData("/users");
+    console.log(resp);
 
     this.setState({
       users: [...resp.data.slice(0, 10)],
