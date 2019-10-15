@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RoundImage as ProfileImage } from "../styled/RoundImage";
+import { GracefulImage as ProfileImage } from "../styled/GracefulImage";
 import { getData } from "../helpers/APICalls";
 
 export const Homepage = () => {
@@ -24,6 +24,7 @@ export const Homepage = () => {
             width={"180px"}
             height={"180px"}
             alt="User avatar"
+            round={1}
           />
         </li>
       ))}

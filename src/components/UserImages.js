@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getDataWithAuth } from "../helpers/APICalls";
-import { RoundImage } from "../styled/RoundImage";
+import { GracefulImage } from "../styled/GracefulImage";
 
 export const UserImages = () => {
   const [imgUrls, setImgUrls] = useState([]);
@@ -14,6 +14,13 @@ export const UserImages = () => {
   }, []);
 
   return imgUrls.map((url, index) => (
-    <RoundImage src={url} width="250px" height="250px" key={index} />
+    <GracefulImage
+      src={url}
+      width="250px"
+      height="250px"
+      key={index}
+      alt="User posts"
+      round={0}
+    />
   ));
 };
