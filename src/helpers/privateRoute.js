@@ -9,7 +9,7 @@ const PrivateRoute = ({ render: Component, ...rest }) => {
       {...rest}
       render={props =>
         localStorage.getItem("jwt") ? (
-          <Component {...props} />
+          <Component {...props} {...rest} />
         ) : (
           <Redirect
             to={{
