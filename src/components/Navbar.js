@@ -6,12 +6,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavLink
 } from "reactstrap";
 
 class MyNavbar extends React.Component {
@@ -35,30 +30,17 @@ class MyNavbar extends React.Component {
           <NavbarBrand href="/">Copygram</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            {/* <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  GitHub
-                </NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
-                  <DropdownItem>Option 2</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Reset</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav> */}
-            <Link to="/">Home</Link>
-            <Link to="/login">Log In</Link>
-            <Link to="/users/me">Profile Page</Link>
+            <Nav className="ml-auto" navbar>
+              <NavLink>
+                <Link to="/">Home</Link>
+              </NavLink>
+              <NavLink>
+                <Link to="/login">Log In</Link>
+              </NavLink>
+              <NavLink>
+                <Link to="/users/me">Profile Page</Link>
+              </NavLink>
+            </Nav>
           </Collapse>
         </Navbar>
       </div>
