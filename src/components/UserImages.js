@@ -7,7 +7,7 @@ export const UserImages = ({ id }) => {
   const [imgUrls, setImgUrls] = useState([]);
 
   useEffect(() => {
-    let path = id === "me" ? APIUrls.myImages : APIUrls.userImages;
+    let path = id === "me" ? APIUrls.myImages : `${APIUrls.userImages}${id}`;
 
     let headers = id === "me";
 

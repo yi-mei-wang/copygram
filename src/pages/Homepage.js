@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { UserProfileCard } from "../components/UserProfileCard";
 import { GracefulImage as ProfileImage } from "../styled/GracefulImage";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
@@ -16,19 +17,15 @@ export const Homepage = () => {
   }, []);
 
   return (
-    <ul>
+    <div>
       {users.map((user, index) => (
-        <li key={index}>
-          {user.id}: {user.username}
-          <ProfileImage
-            src={user.profileImage}
-            width={"180px"}
-            height={"180px"}
-            alt="User avatar"
-            round={1}
-          />
-        </li>
+        <UserProfileCard
+          username={user.username}
+          profileImage={user.profileImage}
+          id={user.id}
+          key={index}
+        />
       ))}
-    </ul>
+    </div>
   );
 };

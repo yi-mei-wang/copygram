@@ -7,9 +7,11 @@ import { APIUrls } from "../constants/APIUrls";
 export class UserProfilePage extends React.Component {
   state = {
     imgUrls: [],
-    username: null,
-    profileImage: null
+    username: "",
+    profileImage: null,
+    id: null
   };
+
   id = this.props.match.params.id;
 
   async componentDidMount() {
@@ -23,17 +25,22 @@ export class UserProfilePage extends React.Component {
       const resp = await getDataWithHeaders(path, headers);
       this.setState({
         username: resp.data.username,
-        profileImage: resp.data[key]
+        profileImage: resp.data[key],
+        id: resp.data.id
       });
     } catch (err) {
       console.log(err);
     }
   }
   render() {
-    const { username, profileImage } = this.state;
+    const { username, profileImage, id } = this.state;
     return (
       <>
-        <UserProfileCard username={username} profileImage={profileImage} />
+        <UserProfileCard
+          username={username}
+          profileImage={profileImage}
+          id={id}
+        />
         <UserImages id={this.id} />
       </>
     );
