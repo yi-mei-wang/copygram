@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledImage = styled.img`
   width: ${props => props.width};
   height: ${props => props.height};
-  border-radius: 50%;
+  border-radius: ${props => (props.round === 1 ? "50%" : "0")};
 `;
 
 export const RoundImage = ({ src, width, height, alt }) => (
