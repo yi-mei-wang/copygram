@@ -1,7 +1,7 @@
 import React from "react";
 import { RoundImage } from "../styled/GracefulImage";
 import { UserProfileCard } from "../components/UserProfileCard";
-import { getDataWithAuth } from "../helpers/APICalls";
+import { getDataWithHeaders } from "../helpers/APICalls";
 import { UserImages } from "../components/UserImages";
 import { APIUrls } from "../constants/APIUrls";
 
@@ -11,16 +11,22 @@ export class UserProfilePage extends React.Component {
     username: null,
     profileImage: null
   };
+  id = this.props.match.params.id;
 
   async componentDidMount() {
-    try {
-      const resp = await getDataWithAuth(
-        `${APIUrls.userInfo}${this.props.match.params.id}`
-      );
+    let headers = this.id === "me";
 
+    let key = this.id === "me" ? "profile_picture" : "profileImage";
+
+    try {
+      const resp = await getDataWithHeaders(
+        `${APIUrls.userInfo}${this.id}`,
+        headers
+      );
+      console.log(resp.data.profile_picture);
       this.setState({
         username: resp.data.username,
-        profileImage: resp.data.profile_picture
+        profileImage: resp.data[key]
       });
     } catch (err) {
       console.log(err);
@@ -31,7 +37,7 @@ export class UserProfilePage extends React.Component {
     return (
       <>
         <UserProfileCard username={username} profileImage={profileImage} />
-        <UserImages id={this.props.match.params.id} />
+        <UserImages id={this.id} />
       </>
     );
   }

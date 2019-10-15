@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { GracefulImage as ProfileImage } from "../styled/GracefulImage";
-import { getData } from "../helpers/APICalls";
+import { getDataWithHeaders } from "../helpers/APICalls";
 
 export const Homepage = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const resp = await getData("/users");
+      const resp = await getDataWithHeaders("/users");
       setUsers(resp.data);
     };
 

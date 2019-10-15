@@ -23,6 +23,12 @@ const loginUserCall = async (url, credentials) => {
 };
 
 const getDataWithHeaders = (path, headers) => {
+  headers = headers && {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    }
+  };
+
   try {
     return axios.get(path, headers);
   } catch (err) {

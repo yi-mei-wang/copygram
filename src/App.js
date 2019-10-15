@@ -9,7 +9,7 @@ import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
-import { getData } from "./helpers/APICalls";
+import { getDataWithHeaders } from "./helpers/APICalls";
 import { PrivateRoute } from "./helpers/privateRoute";
 
 class App extends React.Component {
@@ -22,7 +22,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const resp = await getData("/users");
+    const resp = await getDataWithHeaders("/users");
 
     this.setState({
       users: [...resp.data.slice(0, 10)],

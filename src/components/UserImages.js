@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getDataWithHeaders } from "../helpers/APICalls";
-import { APIUrls } from "../constant/APIUrls";
+import { APIUrls } from "../constants/APIUrls";
 import { GracefulImage } from "../styled/GracefulImage";
 
 export const UserImages = ({ id }) => {
   const [imgUrls, setImgUrls] = useState([]);
 
   useEffect(() => {
-    let path = id === "me" ? APIUrls.myImages : APIUrls.UserImages;
+    let path = id === "me" ? APIUrls.myImages : APIUrls.userImages;
     let headers = id === "me" && {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`
