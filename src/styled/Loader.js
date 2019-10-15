@@ -1,11 +1,8 @@
 import React from "react";
 
-export const Loader = ({ fill, width, height }) => {
+export const Loader = ({ dark, light, width, height }) => {
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "70vh" }}
-    >
+    <>
       <svg
         width={width}
         height={height}
@@ -22,7 +19,7 @@ export const Loader = ({ fill, width, height }) => {
           fill="none"
           ng-attr-stroke="{{config.c1}}"
           ng-attr-stroke-width="{{config.width}}"
-          stroke="#1d3f72"
+          stroke={dark}
           stroke-width="2"
         >
           <animate
@@ -53,7 +50,7 @@ export const Loader = ({ fill, width, height }) => {
           fill="none"
           ng-attr-stroke="{{config.c2}}"
           ng-attr-stroke-width="{{config.width}}"
-          stroke="#5699d2"
+          stroke={light}
           stroke-width="2"
         >
           <animate
@@ -78,6 +75,6 @@ export const Loader = ({ fill, width, height }) => {
           ></animate>
         </circle>
       </svg>
-    </div>
+    </>
   );
 };
