@@ -10,6 +10,7 @@ const Container = styled.div`
   background-color: #efefef;
   position: relative;
   display: inline-block;
+  overflow: hidden;
 `;
 
 export const GracefulImage = ({ src, width, height, alt, round }) => (
