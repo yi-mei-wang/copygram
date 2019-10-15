@@ -13,7 +13,7 @@ export const UserImages = () => {
     fetchData();
   }, []);
 
-  return imgUrls.map(url => (
-    <RoundImage src={url} width="250px" height="250px" />
+  return imgUrls.map((url, index) => (
+    <RoundImage src={url} width="250px" height="250px" key={index} />
   ));
 };

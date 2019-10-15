@@ -63,7 +63,6 @@ const getData = path => {
   let data;
   try {
     data = axios.get(path);
-    console.log(axios);
     return data;
   } catch (err) {
     console.log(err);

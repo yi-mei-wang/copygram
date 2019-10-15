@@ -60,7 +60,12 @@ class App extends React.Component {
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           {isLoading ? (
-            <Loader fill="orange" width="200px" height="200px" />
+            <Loader
+              fill="orange"
+              width="200px"
+              height="200px"
+              className="mx-auto"
+            />
           ) : (
             <Switch>
               <Route
