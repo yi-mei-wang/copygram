@@ -8,11 +8,8 @@ export const UserImages = ({ id }) => {
 
   useEffect(() => {
     let path = id === "me" ? APIUrls.myImages : APIUrls.userImages;
-    let headers = id === "me" && {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      }
-    };
+
+    let headers = id === "me";
 
     const fetchData = async () => {
       const resp = await getDataWithHeaders(path, headers);

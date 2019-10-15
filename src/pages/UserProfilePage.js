@@ -18,12 +18,10 @@ export class UserProfilePage extends React.Component {
 
     let key = this.id === "me" ? "profile_picture" : "profileImage";
 
+    let path = `${APIUrls.userInfo}${this.id}`;
+
     try {
-      const resp = await getDataWithHeaders(
-        `${APIUrls.userInfo}${this.id}`,
-        headers
-      );
-      console.log(resp.data.profile_picture);
+      const resp = await getDataWithHeaders(path, headers);
       this.setState({
         username: resp.data.username,
         profileImage: resp.data[key]
