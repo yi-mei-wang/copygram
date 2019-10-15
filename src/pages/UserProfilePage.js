@@ -3,6 +3,7 @@ import { RoundImage } from "../styled/GracefulImage";
 import { UserProfileCard } from "../components/UserProfileCard";
 import { getDataWithAuth } from "../helpers/APICalls";
 import { UserImages } from "../components/UserImages";
+import { APIUrls } from "../constants/APIUrls";
 
 export class UserProfilePage extends React.Component {
   state = {
@@ -13,7 +14,9 @@ export class UserProfilePage extends React.Component {
 
   async componentDidMount() {
     try {
-      const resp = await getDataWithAuth("/users/me");
+      const resp = await getDataWithAuth(
+        `${APIUrls.userInfo}${this.props.match.params.id}`
+      );
 
       this.setState({
         username: resp.data.username,

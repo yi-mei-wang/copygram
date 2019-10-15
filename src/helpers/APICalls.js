@@ -22,24 +22,12 @@ const loginUserCall = async (url, credentials) => {
   }
 };
 
-const getDataWithAuth = path => {
+const getDataWithHeaders = (path, headers) => {
   try {
-    return axios.get(path, {
-      headers: {
-        Authorization: `Bearer ${AUTH_TOKEN}`
-      }
-    });
+    return axios.get(path, headers);
   } catch (err) {
     console.log(err);
   }
 };
 
-const getData = path => {
-  try {
-    return axios.get(path);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export { getData, getDataWithAuth, loginUserCall };
+export { getDataWithHeaders, loginUserCall };

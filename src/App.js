@@ -71,9 +71,7 @@ class App extends React.Component {
                 )}
               />
               <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
-              <PrivateRoute exact path="/">
-                <Homepage users={users} isLoading={isLoading} />
-              </PrivateRoute>
+              <PrivateRoute exact path="/" render={Homepage} />
             </Switch>
           )}
         </Router>
