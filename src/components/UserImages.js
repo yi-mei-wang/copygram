@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 import { GracefulImage } from "../styled/GracefulImage";
+
+const Container = styled.div`
+  display: flex;
+  width: 900px;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  justify-content: space-evenly;
+`;
 
 export const UserImages = ({ id }) => {
   const [imgUrls, setImgUrls] = useState([]);
@@ -18,14 +27,18 @@ export const UserImages = ({ id }) => {
     fetchData();
   }, [id]);
 
-  return imgUrls.map((url, index) => (
-    <GracefulImage
-      src={url}
-      width="250px"
-      height="250px"
-      key={index}
-      alt="User posts"
-      round={0}
-    />
-  ));
+  return (
+    <Container>
+      {imgUrls.map((url, index) => (
+        <GracefulImage
+          src={url}
+          width="250px"
+          height="250px"
+          key={index}
+          alt="User posts"
+          round={0}
+        />
+      ))}
+    </Container>
+  );
 };

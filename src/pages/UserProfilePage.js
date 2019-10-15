@@ -41,7 +41,9 @@ export class UserProfilePage extends React.Component {
           profileImage={profileImage}
           id={id}
         />
-        <UserImages id={this.id} />
+        <div style={{}}>
+          <UserImages id={this.id} />
+        </div>
       </>
     );
   }
