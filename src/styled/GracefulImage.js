@@ -7,7 +7,7 @@ const Container = styled.div`
   width: ${props => props.width};
   /* height: calc(100% / 3); */
   height: ${props => props.height};
-  background-color: #efefef;
+  background-color: #fbfbfb;
   position: relative;
   display: inline-block;
   overflow: hidden;

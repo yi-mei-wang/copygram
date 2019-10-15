@@ -23,11 +23,14 @@ export class UserProfilePage extends React.Component {
 
     try {
       const resp = await getDataWithHeaders(path, headers);
+
       this.setState({
         username: resp.data.username,
         profileImage: resp.data[key],
         id: resp.data.id
       });
+
+      this.props.setLoading();
     } catch (err) {
       console.log(err);
     }

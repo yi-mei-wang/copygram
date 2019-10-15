@@ -11,12 +11,13 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
 import { getDataWithHeaders } from "./helpers/APICalls";
 import { PrivateRoute } from "./helpers/privateRoute";
+// Stylesheet
+import "./App.css";
 
 class App extends React.Component {
   signal = axios.CancelToken.source();
 
   state = {
-    users: [],
     isLoading: true,
     currentUser: localStorage.getItem("jwt")
   };
@@ -40,8 +41,14 @@ class App extends React.Component {
     });
   };
 
+  setLoading = () => {
+    this.setState({
+      loading: !this.state.loading
+    });
+  };
+
   render() {
-    let { users, isLoading, currentUser } = this.state;
+    let { isLoading, currentUser } = this.state;
     return (
       <>
         <Router>
@@ -67,11 +74,25 @@ class App extends React.Component {
               <Route
                 path="/login"
                 component={props => (
-                  <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
+                  <LoginPage
+                    setCurrentUser={this.setCurrentUser}
+                    {...props}
+                    setLoading={this.setLoading}
+                  />
                 )}
               />
-              <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
-              <PrivateRoute exact path="/" render={Homepage} />
+              <PrivateRoute
+                exact
+                path="/users/:id"
+                render={UserProfilePage}
+                setLoading={this.setLoading}
+              />
+              <PrivateRoute
+                exact
+                path="/"
+                render={Homepage}
+                setLoading={this.setLoading}
+              />
             </Switch>
           )}
         </Router>
