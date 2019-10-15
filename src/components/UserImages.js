@@ -5,11 +5,15 @@ import { APIUrls } from "../constants/APIUrls";
 import { GracefulImage } from "../styled/GracefulImage";
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex;
   width: 900px;
   flex-wrap: wrap;
   border: 1px solid black;
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 `;
 
 export const UserImages = ({ id }) => {

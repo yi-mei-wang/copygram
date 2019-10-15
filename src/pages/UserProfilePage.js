@@ -41,7 +41,7 @@ export class UserProfilePage extends React.Component {
           profileImage={profileImage}
           id={id}
         />
-        <div style={{}}>
+        <div className="d-flex justify-content-center">
           <UserImages id={this.id} />
         </div>
       </>
