@@ -1,5 +1,4 @@
 import React from "react";
-import { RoundImage } from "../styled/GracefulImage";
 import { UserProfileCard } from "../components/UserProfileCard";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { UserImages } from "../components/UserImages";

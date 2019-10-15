@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const AUTH_TOKEN = localStorage.getItem("jwt");
+
 axios.defaults.baseURL = "https://insta.nextacademy.com/api/v1";
 
 const loginUserCall = async (url, credentials) => {
@@ -25,7 +26,7 @@ const loginUserCall = async (url, credentials) => {
 const getDataWithHeaders = (path, headers) => {
   headers = headers && {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      Authorization: `Bearer ${AUTH_TOKEN}`
     }
   };
 
