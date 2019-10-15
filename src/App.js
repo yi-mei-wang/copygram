@@ -22,17 +22,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    // const resp = await fetchAllUsers(
-    //   "https://insta.nextacademy.com/api/v1/users",
-    //   this.signal.token
-    // );
-    // this.setState({
-    //   users: [...resp.data.slice(0, 10)],
-    //   isLoading: false
-    // });
-    // console.log(data);
     const resp = await getData("/users");
-    console.log(resp);
 
     this.setState({
       users: [...resp.data.slice(0, 10)],

@@ -22,48 +22,21 @@ const loginUserCall = async (url, credentials) => {
   }
 };
 
-// const fetchAllUsers = (url, cancelToken) => {
-//   // return axios.get(url, { cancelToken });
-//   try {
-//     const resp = axios.get(url, { cancelToken });
-//     // Returns an array of user info
-//     return resp;
-//   } catch (err) {
-//     throw err;
-//   }
-// };
-
-// const fetchUserImages = (url, headers) => {
-//   try {
-//     const resp = axios.get(url, { headers });
-//     console.log(resp);
-//     return resp;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-// export { loginUserCall, fetchAllUsers, fetchUserImages };
-
 const getDataWithAuth = path => {
-  let data;
   try {
-    data = axios.get(path, {
+    return axios.get(path, {
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`
       }
     });
-    return data;
   } catch (err) {
     console.log(err);
   }
 };
 
 const getData = path => {
-  let data;
   try {
-    data = axios.get(path);
-    return data;
+    return axios.get(path);
   } catch (err) {
     console.log(err);
   }
