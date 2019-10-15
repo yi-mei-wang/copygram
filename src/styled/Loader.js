@@ -9,7 +9,7 @@ export const Loader = ({ dark, light, width, height }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
-        class="lds-ripple"
+        className="lds-ripple"
         style={{ background: "none" }}
       >
         <circle
@@ -20,7 +20,7 @@ export const Loader = ({ dark, light, width, height }) => {
           ng-attr-stroke="{{config.c1}}"
           ng-attr-stroke-width="{{config.width}}"
           stroke={dark}
-          stroke-width="2"
+          strokeWidth="2"
         >
           <animate
             attributeName="r"
@@ -51,7 +51,7 @@ export const Loader = ({ dark, light, width, height }) => {
           ng-attr-stroke="{{config.c2}}"
           ng-attr-stroke-width="{{config.width}}"
           stroke={light}
-          stroke-width="2"
+          strokeWidth="2"
         >
           <animate
             attributeName="r"

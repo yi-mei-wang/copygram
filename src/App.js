@@ -70,9 +70,7 @@ class App extends React.Component {
                   <LoginPage setCurrentUser={this.setCurrentUser} {...props} />
                 )}
               />
-              <PrivateRoute exact path="/users/me">
-                <UserProfilePage currentUser={currentUser} />
-              </PrivateRoute>
+              <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
               <PrivateRoute exact path="/">
                 <Homepage users={users} isLoading={isLoading} />
               </PrivateRoute>

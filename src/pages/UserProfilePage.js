@@ -25,11 +25,10 @@ export class UserProfilePage extends React.Component {
   }
   render() {
     const { username, profileImage } = this.state;
-    console.log(username, profileImage);
     return (
       <>
         <UserProfileCard username={username} profileImage={profileImage} />
-        <UserImages />
+        <UserImages id={this.props.match.params.id} />
       </>
     );
   }
