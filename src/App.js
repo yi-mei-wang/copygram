@@ -1,9 +1,10 @@
 import axios from "axios";
 import React from "react";
-import { withRouter, Switch, Route } from "react-router-dom";
+import { withRouter, Switch, Route, Link } from "react-router-dom";
 // Components
 import { MyNavbar as Navbar } from "./components/Navbar";
 import { Loader } from "./styled/Loader";
+import { AddButton } from "./styled/AddButton";
 // Pages
 import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
@@ -115,6 +116,9 @@ class App extends React.Component {
             <PrivateRoute path="/upload" render={UploadPage} />
           </Switch>
         )}
+        <Link to="/upload">
+          <AddButton />
+        </Link>
       </>
     );
   }
