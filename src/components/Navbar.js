@@ -45,13 +45,21 @@ class MyNavbar extends React.Component {
                 <DropdownMenu right>
                   <DropdownItem></DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    {localStorage.getItem("jwt") !== null ? (
+
+                  {localStorage.getItem("jwt") !== null ? (
+                    <DropdownItem>
                       <Link to="/logout">Log Out</Link>
-                    ) : (
-                      <Link to="/login">Log In</Link>
-                    )}
-                  </DropdownItem>
+                    </DropdownItem>
+                  ) : (
+                    <>
+                      <DropdownItem>
+                        <Link to="/login">Log In</Link>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <Link to="/signup">Sign Up</Link>
+                      </DropdownItem>
+                    </>
+                  )}
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

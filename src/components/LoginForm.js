@@ -25,7 +25,6 @@ export const LoginForm = ({ setCurrentUser, history }) => {
         userInputs
       );
       localStorage.setItem("jwt", auth_token);
-      localStorage.setItem("jwt", auth_token);
       setCurrentUser(user);
       history.push({
         pathname: "/"
