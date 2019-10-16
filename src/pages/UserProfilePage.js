@@ -8,8 +8,7 @@ export class UserProfilePage extends React.Component {
   state = {
     imgUrls: [],
     username: "",
-    profileImage: null,
-    id: null
+    profileImage: null
   };
 
   id = this.props.match.params.id;
@@ -26,8 +25,7 @@ export class UserProfilePage extends React.Component {
 
       this.setState({
         username: resp.data.username,
-        profileImage: resp.data[key],
-        id: resp.data.id
+        profileImage: resp.data[key]
       });
 
       this.props.setLoading();
@@ -36,13 +34,13 @@ export class UserProfilePage extends React.Component {
     }
   }
   render() {
-    const { username, profileImage, id } = this.state;
+    const { username, profileImage } = this.state;
     return (
       <>
         <UserProfileCard
           username={username}
           profileImage={profileImage}
-          id={id}
+          id={this.id}
         />
         <div className="d-flex justify-content-center">
           <UserImages id={this.id} />

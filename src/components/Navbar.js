@@ -6,6 +6,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  NavLink,
   UncontrolledDropdown,
   DropdownItem,
   DropdownMenu,
@@ -34,16 +35,16 @@ class MyNavbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <Link to="/">Home</Link>
-
-              <Link to="/users/me">Profile Page</Link>
-
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Account Management
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>Option 1</DropdownItem>
+                  <DropdownItem>
+                    <Link className="nav-link" to="/users/me">
+                      Profile Page
+                    </Link>
+                  </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
                     <Link to="/logout">Log Out</Link>
