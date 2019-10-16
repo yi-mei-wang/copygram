@@ -41,6 +41,7 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
     <Button
       {...props}
       ref={ref}
+      disabled={props.disabled}
       variant="contained"
       color="secondary"
       className={classes.button}

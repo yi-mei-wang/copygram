@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, FormText, Input } from "reactstrap";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 
 const UploadForm = ({ handleFile, handleSubmitFile }) => {
+  const [disabled, setDisabled] = useState(true);
+
   const handleChange = e => {
-    e.target.files[0] ? handleFile(e.target.files[0]) : handleFile(null);
+    let file = e.target.files[0];
+
+    if (file) {
+      handleFile(file);
+      setDisabled(false);
+    } else {
+      handleFile(null);
+    }
   };
 
   const handleSubmit = e => {
@@ -26,7 +35,7 @@ const UploadForm = ({ handleFile, handleSubmitFile }) => {
           <FormText color="muted">
             Make sure the image being uploaded is a supported format.
           </FormText>
-          <ButtonWithLoader type="submit" color="primary">
+          <ButtonWithLoader type="submit" color="primary" disabled={disabled}>
             Upload
           </ButtonWithLoader>
         </div>
