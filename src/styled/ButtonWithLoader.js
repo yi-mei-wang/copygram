@@ -42,7 +42,7 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
       {...props}
       ref={ref}
       variant="contained"
-      color="primary"
+      color="secondary"
       className={classes.button}
       style={
         showLoader
