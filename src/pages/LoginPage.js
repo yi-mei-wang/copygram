@@ -1,10 +1,9 @@
 import React from "react";
-import { LoginForm } from "../components/LoginForm";
-import { SignUpForm } from "../components/SignUpForm";
+import { UserForm } from "../components/UserForm";
 
 export const LoginPage = ({ setCurrentUser, ...props }) => (
   <div style={{ margin: "auto" }}>
     {/* <LoginForm setCurrentUser={setCurrentUser} {...props} /> */}
-    <SignUpForm setCurrentUser={setCurrentUser} {...props} />
+    <UserForm setCurrentUser={setCurrentUser} {...props} />
   </div>
 );

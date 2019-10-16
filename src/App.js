@@ -72,6 +72,7 @@ class App extends React.Component {
         ) : (
           <Switch>
             <Route
+              key="login"
               path="/login"
               component={props => (
                 <LoginPage
@@ -82,11 +83,12 @@ class App extends React.Component {
               )}
             />
             <Route
+              key="signup"
               path="/signup"
               component={props => (
                 <LoginPage
-                  setCurrentUser={this.setCurrentUser}
                   {...props}
+                  setCurrentUser={this.setCurrentUser}
                   setLoading={this.setLoading}
                 />
               )}

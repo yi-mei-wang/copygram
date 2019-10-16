@@ -43,9 +43,6 @@ class MyNavbar extends React.Component {
                   Account Management
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem></DropdownItem>
-                  <DropdownItem divider />
-
                   {localStorage.getItem("jwt") !== null ? (
                     <DropdownItem>
                       <Link to="/logout">Log Out</Link>

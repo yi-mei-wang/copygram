@@ -5,7 +5,7 @@ import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 import { postUserData } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 
-export const SignUpForm = ({ setCurrentUser, history, match }) => {
+export const UserForm = ({ setCurrentUser, history, match }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   const [userInputs, setUserInputs] = useState({
