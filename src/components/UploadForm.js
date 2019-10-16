@@ -1,47 +1,66 @@
-import React, { useState } from "react";
-import { Form, FormGroup, FormText, Input } from "reactstrap";
+import React from "react";
+import { Form, FormGroup, FormText } from "reactstrap";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 
-const UploadForm = ({ handleFile, handleSubmitFile }) => {
-  const [disabled, setDisabled] = useState(true);
+class UploadForm extends React.Component {
+  state = {
+    isDisabled: true,
+    isLoading: false
+  };
 
-  const handleChange = e => {
+  handleChange = e => {
     let file = e.target.files[0];
 
     if (file) {
-      handleFile(file);
-      setDisabled(false);
+      this.props.handleFile(file);
+      this.setState({
+        isDisabled: false
+      });
     } else {
-      handleFile(null);
+      this.props.handleFile(null);
     }
   };
 
-  const handleSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    handleSubmitFile();
+    this.toggleLoading(true);
+    this.props.handleSubmitFile(this.toggleLoading);
   };
 
-  return (
-    <Form onSubmit={e => handleSubmit(e)}>
-      <FormGroup>
-        <input
-          type="file"
-          name="image-file"
-          id="image-file"
-          onChange={e => handleChange(e)}
-        />
+  toggleLoading = isLoading => {
+    this.setState({
+      isLoading
+    });
+  };
+  render() {
+    const { isDisabled, isLoading } = this.state;
+    return (
+      <Form onSubmit={e => this.handleSubmit(e)}>
+        <FormGroup>
+          <input
+            type="file"
+            name="image-file"
+            id="image-file"
+            onChange={e => this.handleChange(e)}
+          />
 
-        <div className="d-flex flex-column align-items-center">
-          <FormText color="muted">
-            Make sure the image being uploaded is a supported format.
-          </FormText>
-          <ButtonWithLoader type="submit" color="primary" disabled={disabled}>
-            Upload
-          </ButtonWithLoader>
-        </div>
-      </FormGroup>
-    </Form>
-  );
-};
+          <div className="d-flex flex-column align-items-center">
+            <FormText color="muted">
+              Make sure the image being uploaded is a supported format.
+            </FormText>
+            <ButtonWithLoader
+              type="submit"
+              color="primary"
+              disabled={isDisabled}
+              isLoading={isLoading}
+            >
+              Upload
+            </ButtonWithLoader>
+          </div>
+        </FormGroup>
+      </Form>
+    );
+  }
+}
 
 export default UploadForm;

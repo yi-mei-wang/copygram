@@ -24,7 +24,7 @@ export default class UploadPage extends React.Component {
     }
   };
 
-  handleSubmitFile = () => {
+  handleSubmitFile = toggleLoading => {
     // Prevent the default behaviour of the form submitting
     // Authorization of the user
     let authToken = localStorage.getItem("jwt");
@@ -44,6 +44,7 @@ export default class UploadPage extends React.Component {
             previewImage: null,
             imageFile: null
           });
+          toggleLoading(false);
         }
       })
       .catch(error => {
@@ -61,7 +62,8 @@ export default class UploadPage extends React.Component {
             height: "70vh",
             display: "flex",
             alignItems: "center",
-            flexDirection: "column"
+            flexDirection: "column",
+            marginTop: "2rem"
           }}
         >
           <div
