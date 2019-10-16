@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { withRouter, Switch, Route } from "react-router-dom";
 // Components
 import { MyNavbar as Navbar } from "./components/Navbar";
 import { Loader } from "./styled/Loader";
@@ -83,6 +83,16 @@ class App extends React.Component {
                 )}
               />
               <Route
+                path="/signup"
+                component={props => (
+                  <LoginPage
+                    setCurrentUser={this.setCurrentUser}
+                    {...props}
+                    setLoading={this.setLoading}
+                  />
+                )}
+              />
+              <Route
                 path="/logout"
                 render={props => <LogoutPage {...props} />}
               />
@@ -106,4 +116,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

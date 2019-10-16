@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
-import { signUpUserCall } from "../helpers/APICalls";
+import { postUserData } from "../helpers/APICalls";
+import { APIUrls } from "../constants/APIUrls";
 
-export const SignUpForm = ({ setCurrentUser, history }) => {
+export const SignUpForm = ({ setCurrentUser, history, match }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
-  const [userInputs, setUserInputs] = useState({ username: "", password: "" });
+  const [userInputs, setUserInputs] = useState({
+    username: "",
+    password: ""
+  });
   const [errors, setErrors] = useState(false);
+  const path = useRef(APIUrls[match.url.replace("/", "")]);
+
+  console.log(typeof match.url);
 
   const handleChange = name => e => {
     setUserInputs({ ...userInputs, [name]: e.target.value });
@@ -17,16 +24,16 @@ export const SignUpForm = ({ setCurrentUser, history }) => {
     setErrors({ ...errors, [name]: true });
   };
 
-  const signUpUser = async () => {
+  const postData = async () => {
     // validate user input
+
     try {
-      const { auth_token, user } = await signUpUserCall(
-        "https://insta.nextacademy.com/api/v1/login",
-        userInputs
-      );
+      const { auth_token, user } = await postUserData(path, userInputs);
+
       localStorage.setItem("jwt", auth_token);
-      localStorage.setItem("jwt", auth_token);
+
       setCurrentUser(user);
+
       history.push({
         pathname: "/"
       });
@@ -69,12 +76,23 @@ export const SignUpForm = ({ setCurrentUser, history }) => {
         value={userInputs.password}
       />
 
+      {path === "signup" && (
+        <TextField
+          className={classes.input}
+          label="email"
+          type="email"
+          value={userInputs.email}
+          onChange={handleChange("email")}
+          margin="normal"
+        />
+      )}
+
       <div className="mx-auto">
         <ButtonWithLoader
           isLoading={isButtonLoading}
           onClick={() => {
             setIsButtonLoading(true);
-            signUpUser();
+            postData();
           }}
           disabled={
             !userInputs
