@@ -8,6 +8,7 @@ import { Loader } from "./styled/Loader";
 import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
 import { LogoutPage } from "./pages/LogoutPage";
+import UploadPage from "./pages/UploadPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
 import { getDataWithHeaders } from "./helpers/APICalls";
@@ -106,6 +107,7 @@ class App extends React.Component {
               render={Homepage}
               setLoading={this.setLoading}
             />
+            <PrivateRoute path="/upload" render={UploadPage} />
           </Switch>
         )}
       </>
