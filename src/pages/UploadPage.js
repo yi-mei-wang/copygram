@@ -11,16 +11,23 @@ export default class UploadPage extends React.Component {
   };
 
   handleFile = file => {
-    this.setState({
-      previewImage: URL.createObjectURL(file),
-      imageFile: file
-    });
+    if (file) {
+      this.setState({
+        previewImage: URL.createObjectURL(file),
+        imageFile: file
+      });
+    } else {
+      this.setState({
+        previewImage: "",
+        imageFile: null
+      });
+    }
   };
 
   handleSubmitFile = () => {
     // Prevent the default behaviour of the form submitting
     // Authorization of the user
-    let authToken = localStorage.getItem("JWT");
+    let authToken = localStorage.getItem("jwt");
     // Formdata object to hold the image file to send to the server
     let formData = new FormData();
     // Append the key:value pair to the formData object

@@ -1,9 +1,10 @@
 import React from "react";
-import { Form, FormGroup, FormText, Button, Input } from "reactstrap";
+import { Form, FormGroup, FormText, Input } from "reactstrap";
+import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 
 const UploadForm = ({ handleFile, handleSubmitFile }) => {
   const handleChange = e => {
-    handleFile(e.target.files[0]);
+    e.target.files[0] ? handleFile(e.target.files[0]) : handleFile(null);
   };
 
   const handleSubmit = e => {
@@ -19,9 +20,9 @@ const UploadForm = ({ handleFile, handleSubmitFile }) => {
           Make sure the image being uploaded is a supported format.
         </FormText>
       </FormGroup>
-      <Button type="submit" color="primary">
+      <ButtonWithLoader type="submit" color="primary">
         Upload
-      </Button>
+      </ButtonWithLoader>
     </Form>
   );
 };
