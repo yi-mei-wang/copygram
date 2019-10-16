@@ -14,6 +14,7 @@ export class UserProfilePage extends React.Component {
   id = this.props.match.params.id;
 
   async componentDidMount() {
+    this.props.setLoading();
     let headers = this.id === "me";
 
     let key = this.id === "me" ? "profile_picture" : "profileImage";
