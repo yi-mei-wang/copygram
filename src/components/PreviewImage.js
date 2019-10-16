@@ -23,15 +23,20 @@ export const PreviewImage = ({ previewImage, message }) => (
   <Container>
     {previewImage ? (
       <Img src={previewImage} alt="Preview upload" />
+    ) : message ? (
+      <h4>message</h4>
     ) : (
       <div
         style={{
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          width: "100%"
         }}
       >
         <label htmlFor="image-file"></label>
-        <p>Choose an image</p>
+        <h4 style={{ height: "1rem" }}>Choose an image</h4>
       </div>
     )}
   </Container>
