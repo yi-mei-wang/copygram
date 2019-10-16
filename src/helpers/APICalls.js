@@ -4,19 +4,12 @@ const AUTH_TOKEN = localStorage.getItem("jwt");
 
 axios.defaults.baseURL = "https://insta.nextacademy.com/api/v1";
 
-const loginUserCall = async (url, credentials) => {
+const postUserData = async (url, credentials) => {
   const signal = axios.CancelToken.source();
   try {
     const {
       data: { auth_token, user }
-    } = await axios.post(
-      url,
-      {
-        username: credentials.username,
-        password: credentials.password
-      },
-      { cancelToken: signal.token }
-    );
+    } = await axios.post(url, credentials, { cancelToken: signal.token });
     return { auth_token, user };
   } catch (err) {
     throw err;
@@ -37,4 +30,4 @@ const getDataWithHeaders = (path, headers) => {
   }
 };
 
-export { getDataWithHeaders, loginUserCall };
+export { getDataWithHeaders, postUserData };

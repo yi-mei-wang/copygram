@@ -35,19 +35,22 @@ class MyNavbar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <Link className="nav-link" to="/users/me">
+                Profile Page
+              </Link>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Account Management
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    <Link className="nav-link" to="/users/me">
-                      Profile Page
-                    </Link>
-                  </DropdownItem>
+                  <DropdownItem></DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    <Link to="/logout">Log Out</Link>
+                    {localStorage.getItem("jwt") !== null ? (
+                      <Link to="/logout">Log Out</Link>
+                    ) : (
+                      <Link to="/login">Log In</Link>
+                    )}
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

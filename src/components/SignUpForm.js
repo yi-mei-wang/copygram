@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
-import { postUserData } from "../helpers/APICalls";
+import { signUpUserCall } from "../helpers/APICalls";
 
-export const LoginForm = ({ setCurrentUser, history }) => {
+export const SignUpForm = ({ setCurrentUser, history }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState(false);
@@ -17,10 +17,10 @@ export const LoginForm = ({ setCurrentUser, history }) => {
     setErrors({ ...errors, [name]: true });
   };
 
-  const loginUser = async () => {
+  const signUpUser = async () => {
     // validate user input
     try {
-      const { auth_token, user } = await postUserData(
+      const { auth_token, user } = await signUpUserCall(
         "https://insta.nextacademy.com/api/v1/login",
         userInputs
       );
@@ -74,7 +74,7 @@ export const LoginForm = ({ setCurrentUser, history }) => {
           isLoading={isButtonLoading}
           onClick={() => {
             setIsButtonLoading(true);
-            loginUser();
+            signUpUser();
           }}
           disabled={
             !userInputs
@@ -83,7 +83,7 @@ export const LoginForm = ({ setCurrentUser, history }) => {
           }
           className="m-auto"
         >
-          Login
+          Sign Up
         </ButtonWithLoader>
       </div>
     </div>
