@@ -36,7 +36,7 @@ class MyNavbar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <Link className="nav-link" to="/users/me">
-                Profile Page
+                My Profile
               </Link>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
