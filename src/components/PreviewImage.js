@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as DeleteButton } from "../delete-button.svg";
 
 const Container = styled.div`
   width: 100%;
@@ -11,6 +12,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0.5rem 0 1rem 0;
+  position: relative;
 `;
 
 const Img = styled.img`
@@ -22,8 +24,9 @@ const Img = styled.img`
 export const PreviewImage = ({ previewImage, message }) => (
   <>
     <h4 className="text-center">{message}</h4>
-
     <Container>
+      {/* <DeleteButton style={{ width: "30px", height: "30px", position:"absolute", right: "0", top: "0" }} /> */}
+      <label htmlFor="image-file"></label>
       {previewImage ? (
         <Img src={previewImage} alt="Preview upload" />
       ) : (
@@ -36,7 +39,6 @@ export const PreviewImage = ({ previewImage, message }) => (
             width: "100%"
           }}
         >
-          <label htmlFor="image-file"></label>
           <h5 style={{ height: "1rem" }}>Choose an image</h5>
         </div>
       )}

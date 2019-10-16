@@ -17,6 +17,7 @@ export default class UploadPage extends React.Component {
         imageFile: file
       });
     } else {
+      URL.revokeObjectURL(this.state.previewImage);
       this.setState({
         previewImage: "",
         imageFile: null
