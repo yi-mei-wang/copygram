@@ -6,6 +6,9 @@ const Container = styled.div`
   height: 100%;
   border: 1px solid #ccc;
   background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Img = styled.img`
