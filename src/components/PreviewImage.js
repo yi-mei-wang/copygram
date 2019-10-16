@@ -4,11 +4,13 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid #ccc;
+  border: 3px dashed #ccc;
+  border-radius: 15px;
   background-color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2rem 0;
 `;
 
 const Img = styled.img`
