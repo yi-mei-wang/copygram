@@ -94,7 +94,12 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route path="/logout" render={props => <LogoutPage {...props} />} />
+            <Route
+              path="/logout"
+              render={props => (
+                <LogoutPage {...props} setCurrentUser={this.setCurrentUser} />
+              )}
+            />
             <PrivateRoute
               exact
               path="/users/:id"
