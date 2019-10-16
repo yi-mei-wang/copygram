@@ -34,14 +34,16 @@ export const UserImages = ({ id }) => {
   return (
     <Container>
       {imgUrls.map((url, index) => (
-        <GracefulImage
-          src={url}
-          width="250px"
-          height="250px"
-          key={index}
-          alt="User posts"
-          round={0}
-        />
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <GracefulImage
+            src={url}
+            width="250px"
+            height="250px"
+            key={index}
+            alt="User posts"
+            round={0}
+          />
+        </a>
       ))}
     </Container>
   );
