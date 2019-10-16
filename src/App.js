@@ -52,65 +52,60 @@ class App extends React.Component {
     let { isLoading, currentUser } = this.state;
     return (
       <>
-        <Router>
-          <Navbar currentUser={currentUser} />
+        <Navbar currentUser={currentUser} />
 
-          {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-          {isLoading ? (
-            <div
-              className="d-flex justify-content-center align-items-center"
-              style={{ height: "70vh" }}
-            >
-              <Loader
-                dark="#1d3f72"
-                light="#5699d2"
-                width="200px"
-                height="200px"
-                className="mx-auto"
-              />
-            </div>
-          ) : (
-            <Switch>
-              <Route
-                path="/login"
-                component={props => (
-                  <LoginPage
-                    setCurrentUser={this.setCurrentUser}
-                    {...props}
-                    setLoading={this.setLoading}
-                  />
-                )}
-              />
-              <Route
-                path="/signup"
-                component={props => (
-                  <LoginPage
-                    setCurrentUser={this.setCurrentUser}
-                    {...props}
-                    setLoading={this.setLoading}
-                  />
-                )}
-              />
-              <Route
-                path="/logout"
-                render={props => <LogoutPage {...props} />}
-              />
-              <PrivateRoute
-                exact
-                path="/users/:id"
-                render={UserProfilePage}
-                setLoading={this.setLoading}
-              />
-              <PrivateRoute
-                exact
-                path="/"
-                render={Homepage}
-                setLoading={this.setLoading}
-              />
-            </Switch>
-          )}
-        </Router>
+        {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+        {isLoading ? (
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "70vh" }}
+          >
+            <Loader
+              dark="#1d3f72"
+              light="#5699d2"
+              width="200px"
+              height="200px"
+              className="mx-auto"
+            />
+          </div>
+        ) : (
+          <Switch>
+            <Route
+              path="/login"
+              component={props => (
+                <LoginPage
+                  setCurrentUser={this.setCurrentUser}
+                  {...props}
+                  setLoading={this.setLoading}
+                />
+              )}
+            />
+            <Route
+              path="/signup"
+              component={props => (
+                <LoginPage
+                  setCurrentUser={this.setCurrentUser}
+                  {...props}
+                  setLoading={this.setLoading}
+                />
+              )}
+            />
+            <Route path="/logout" render={props => <LogoutPage {...props} />} />
+            <PrivateRoute
+              exact
+              path="/users/:id"
+              render={UserProfilePage}
+              setLoading={this.setLoading}
+            />
+            <PrivateRoute
+              exact
+              path="/"
+              render={Homepage}
+              setLoading={this.setLoading}
+            />
+          </Switch>
+        )}
       </>
     );
   }

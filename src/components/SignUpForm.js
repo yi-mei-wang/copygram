@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
@@ -7,14 +7,18 @@ import { APIUrls } from "../constants/APIUrls";
 
 export const SignUpForm = ({ setCurrentUser, history, match }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
+
   const [userInputs, setUserInputs] = useState({
     username: "",
-    password: ""
+    password: "",
+    email: ""
   });
-  const [errors, setErrors] = useState(false);
-  const path = useRef(APIUrls[match.url.replace("/", "")]);
 
-  console.log(typeof match.url);
+  const [errors, setErrors] = useState(false);
+
+  const key = match.url.replace("/", "");
+
+  const APIPath = APIUrls[key];
 
   const handleChange = name => e => {
     setUserInputs({ ...userInputs, [name]: e.target.value });
@@ -26,9 +30,9 @@ export const SignUpForm = ({ setCurrentUser, history, match }) => {
 
   const postData = async () => {
     // validate user input
-
+    console.log(userInputs);
     try {
-      const { auth_token, user } = await postUserData(path, userInputs);
+      const { auth_token, user } = await postUserData(APIPath, userInputs);
 
       localStorage.setItem("jwt", auth_token);
 
@@ -76,10 +80,10 @@ export const SignUpForm = ({ setCurrentUser, history, match }) => {
         value={userInputs.password}
       />
 
-      {path === "signup" && (
+      {key === "signup" && (
         <TextField
           className={classes.input}
-          label="email"
+          label="Email"
           type="email"
           value={userInputs.email}
           onChange={handleChange("email")}
@@ -101,7 +105,7 @@ export const SignUpForm = ({ setCurrentUser, history, match }) => {
           }
           className="m-auto"
         >
-          Sign Up
+          {key === "login" ? "Log In" : "Sign Up"}
         </ButtonWithLoader>
       </div>
     </div>
