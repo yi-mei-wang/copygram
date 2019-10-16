@@ -1,8 +1,8 @@
 import React from "react";
-import { UserProfileCard } from "../components/UserProfileCard";
-import { getDataWithHeaders } from "../helpers/APICalls";
-import { UserImages } from "../components/UserImages";
 import { APIUrls } from "../constants/APIUrls";
+import { getDataWithHeaders } from "../helpers/APICalls";
+import { UserProfileCard } from "../components/UserProfileCard";
+import { UserImages } from "../components/UserImages";
 
 export class UserProfilePage extends React.Component {
   state = {
