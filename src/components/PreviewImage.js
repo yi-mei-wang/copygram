@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
+  margin: 2rem 0 1rem 0;
 `;
 
 const Img = styled.img`
@@ -24,7 +24,15 @@ export const PreviewImage = ({ previewImage, message }) => (
     {previewImage ? (
       <Img src={previewImage} alt="Preview upload" />
     ) : (
-      <h3 className="text-center">{message ? message : "Live preview"}</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center"
+        }}
+      >
+        <label htmlFor="image-file"></label>
+        <p>Choose an image</p>
+      </div>
     )}
   </Container>
 );

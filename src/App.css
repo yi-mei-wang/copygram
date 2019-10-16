@@ -9,3 +9,29 @@ a {
 a:hover {
   text-decoration: none;
 }
+
+[type="file"] {
+  display: none;
+}
+
+label {
+  /* background: #f15d22;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle; */
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+}

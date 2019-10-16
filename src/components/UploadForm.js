@@ -15,14 +15,22 @@ const UploadForm = ({ handleFile, handleSubmitFile }) => {
   return (
     <Form onSubmit={e => handleSubmit(e)}>
       <FormGroup>
-        <Input type="file" name="image-file" onChange={e => handleChange(e)} />
-        <FormText color="muted">
-          Make sure the image being uploaded is a supported format.
-        </FormText>
+        <input
+          type="file"
+          name="image-file"
+          id="image-file"
+          onChange={e => handleChange(e)}
+        />
+
+        <div className="d-flex flex-column align-items-center">
+          <FormText color="muted">
+            Make sure the image being uploaded is a supported format.
+          </FormText>
+          <ButtonWithLoader type="submit" color="primary">
+            Upload
+          </ButtonWithLoader>
+        </div>
       </FormGroup>
-      <ButtonWithLoader type="submit" color="primary">
-        Upload
-      </ButtonWithLoader>
     </Form>
   );
 };
