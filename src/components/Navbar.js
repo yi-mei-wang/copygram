@@ -48,7 +48,9 @@ class MyNavbar extends React.Component {
                 <DropdownMenu right>
                   <DropdownItem>Option 1</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Log Out</DropdownItem>
+                  <DropdownItem>
+                    <Link to="/logout">Log Out</Link>
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

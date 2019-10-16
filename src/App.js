@@ -7,6 +7,7 @@ import { Loader } from "./styled/Loader";
 // Pages
 import { Homepage } from "./pages/Homepage";
 import { LoginPage } from "./pages/LoginPage";
+import { LogoutPage } from "./pages/LogoutPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
 import { getDataWithHeaders } from "./helpers/APICalls";
@@ -80,6 +81,10 @@ class App extends React.Component {
                     setLoading={this.setLoading}
                   />
                 )}
+              />
+              <Route
+                path="/logout"
+                render={props => <LogoutPage {...props} />}
               />
               <PrivateRoute
                 exact
