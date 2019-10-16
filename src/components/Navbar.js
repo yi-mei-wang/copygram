@@ -6,7 +6,11 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavLink
+  NavLink,
+  UncontrolledDropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle
 } from "reactstrap";
 
 class MyNavbar extends React.Component {
@@ -35,11 +39,18 @@ class MyNavbar extends React.Component {
                 <Link to="/">Home</Link>
               </NavLink>
               <NavLink>
-                <Link to="/login">Log In</Link>
-              </NavLink>
-              <NavLink>
                 <Link to="/users/me">Profile Page</Link>
               </NavLink>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Account Management
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>Option 1</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>Log Out</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
