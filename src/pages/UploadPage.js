@@ -27,6 +27,7 @@ export default class UploadPage extends React.Component {
 
   handleSubmitFile = toggleLoading => {
     // Prevent the default behaviour of the form submitting
+    // TODO: GET JWT FROM STATE
     // Authorization of the user
     let authToken = localStorage.getItem("jwt");
     // Formdata object to hold the image file to send to the server
@@ -46,6 +47,9 @@ export default class UploadPage extends React.Component {
             imageFile: null
           });
           toggleLoading(false);
+          this.props.history.push({
+            pathname: "/users/me"
+          });
         }
       })
       .catch(error => {
