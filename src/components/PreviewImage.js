@@ -26,7 +26,7 @@ export const PreviewImage = ({ previewImage, message }) => (
     <h4 className="text-center">{message}</h4>
     <Container>
       {/* <DeleteButton style={{ width: "30px", height: "30px", position:"absolute", right: "0", top: "0" }} /> */}
-      <label htmlFor="image-file"></label>
+      <label id="image-file-label" htmlFor="image-file"></label>
       {previewImage ? (
         <Img src={previewImage} alt="Preview upload" />
       ) : (
