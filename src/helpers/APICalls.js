@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// TODO: GET JWT FROM STATE
+
 const AUTH_TOKEN = localStorage.getItem("jwt");
 
 axios.defaults.baseURL = "https://insta.nextacademy.com/api/v1";

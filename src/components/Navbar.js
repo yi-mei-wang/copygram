@@ -42,6 +42,8 @@ class MyNavbar extends React.Component {
                   Account Management
                 </DropdownToggle>
                 <DropdownMenu right>
+                  {/* // TODO: GET JWT FROM STATE */}
+
                   {localStorage.getItem("jwt") !== null ? (
                     <DropdownItem>
                       <Link to="/logout">Log Out</Link>

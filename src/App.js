@@ -22,6 +22,8 @@ class App extends React.Component {
 
   state = {
     isLoading: true,
+    // TODO: GET JWT FROM STATE
+
     currentUser: localStorage.getItem("jwt")
   };
 

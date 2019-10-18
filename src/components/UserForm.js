@@ -6,6 +6,9 @@ import { postUserData } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 
 export const UserForm = ({ setCurrentUser, history, match }) => {
+  const key = match.url.replace("/", "");
+  const APIPath = APIUrls[key];
+
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   const [userInputs, setUserInputs] = useState({
@@ -15,10 +18,6 @@ export const UserForm = ({ setCurrentUser, history, match }) => {
   });
 
   const [errors, setErrors] = useState(false);
-
-  const key = match.url.replace("/", "");
-
-  const APIPath = APIUrls[key];
 
   const handleChange = name => e => {
     setUserInputs({ ...userInputs, [name]: e.target.value });
@@ -33,6 +32,8 @@ export const UserForm = ({ setCurrentUser, history, match }) => {
     console.log(userInputs);
     try {
       const { auth_token, user } = await postUserData(APIPath, userInputs);
+
+      // TODO: GET JWT FROM STATE
 
       localStorage.setItem("jwt", auth_token);
 

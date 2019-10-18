@@ -8,6 +8,8 @@ const PrivateRoute = ({ render: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
+        // TODO: GET JWT FROM STATE
+
         localStorage.getItem("jwt") ? (
           <Component {...props} {...rest} />
         ) : (

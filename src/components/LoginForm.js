@@ -24,6 +24,8 @@ export const LoginForm = ({ setCurrentUser, history }) => {
         "https://insta.nextacademy.com/api/v1/login",
         userInputs
       );
+      // TODO: GET JWT FROM STATE
+
       localStorage.setItem("jwt", auth_token);
       setCurrentUser(user);
       history.push({
