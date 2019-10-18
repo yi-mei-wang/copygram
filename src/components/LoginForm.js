@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
 import { postUserData } from "../helpers/APICalls";
 
-export const LoginForm = ({ setCurrentUser, history }) => {
+const LoginForm = observer(({ setCurrentUser, history, changeCurrentUser }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [userInputs, setUserInputs] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState(false);
@@ -27,7 +28,8 @@ export const LoginForm = ({ setCurrentUser, history }) => {
       // TODO: GET JWT FROM STATE
 
       localStorage.setItem("jwt", auth_token);
-      setCurrentUser(user);
+      // setCurrentUser(user);
+      changeCurrentUser(user)
       history.push({
         pathname: "/"
       });
@@ -90,3 +92,6 @@ export const LoginForm = ({ setCurrentUser, history }) => {
     </div>
   );
 };
+
+
+export {LoginForm};
