@@ -2,16 +2,15 @@ import { observable, decorate } from "mobx";
 
 class LoadingStore {
   // @observable currentUser = null
-  currentUser = null;
   isLoading = true;
 
-  changeCurrentUser(user) {
-    this.currentUser = user;
+  setLoading(bool) {
+    this.isLoading = bool;
   }
 }
 
 decorate(LoadingStore, {
-  currentUser: observable
+  isLoading: observable
 });
 
 const loadingStore = new LoadingStore();
