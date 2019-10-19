@@ -8,9 +8,9 @@ class UserStore {
     this.currentUser = user;
   }
 
-  constructor(rootStore) {
-    this.rootStore = rootStore;
-  }
+  // constructor(rootStore) {
+  //   this.rootStore = rootStore;
+  // }
 }
 
 decorate(UserStore, {

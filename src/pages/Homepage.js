@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { observer } from "mobx-react";
+import useStores from "../hooks/useStores";
 import { UserProfileCard } from "../components/UserProfileCard";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 
-export const Homepage = ({ setLoading }) => {
-  const [users, setUsers] = useState([]);
+export const Homepage = observer(({ users }) => {
+  // const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const resp = await getDataWithHeaders(APIUrls.allUsers);
-      setUsers(resp.data);
-      setLoading(false);
-    };
+  const store = useStores();
+  // console.log(store.rootStore);
+  // console.log(store.rootStore.loadingStore);
 
-    fetchUsers();
-  }, [setLoading]);
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     const resp = await getDataWithHeaders(APIUrls.allUsers);
+  //     setUsers(resp.data);
+  //     store.rootStore.loadingStore.setLoading(false);
+  //   };
+
+  //   fetchUsers();
+  // }, [store.rootStore.loadingStore]);
 
   return (
     <div>
@@ -28,4 +34,4 @@ export const Homepage = ({ setLoading }) => {
       ))}
     </div>
   );
-};
+});

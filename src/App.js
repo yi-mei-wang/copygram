@@ -20,10 +20,12 @@ import useStores from "./hooks/useStores";
 // Stylesheet
 import "./App.css";
 
-const App = observer(() => {
+const App = () => {
   const signal = axios.CancelToken.source();
 
-  const rootStore = useStores();
+  const store = useStores();
+  console.log(store.rootStore);
+  console.log(store.rootStore.loadingStore);
 
   const [users, setUsers] = useState();
 
@@ -31,10 +33,10 @@ const App = observer(() => {
     const fetchAllUsers = async () => {
       const resp = await getDataWithHeaders("/users");
       setUsers([...resp.data.slice(0, 10)]);
-      // setIsLoading(false);
+      store.rootStore.loadingStore.setIsLoading(false);
     };
     fetchAllUsers();
-  }, []);
+  }, [store.rootStore.loadingStore]);
 
   useEffect(() => {
     signal.cancel("Api is being cancelled");
@@ -45,7 +47,7 @@ const App = observer(() => {
       <Navbar />
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
-      {rootStore.isLoading ? (
+      {store.rootStore.loadingStore.isLoading ? (
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ height: "70vh" }}
@@ -85,6 +87,6 @@ const App = observer(() => {
       </Link>
     </>
   );
-});
+};
 
-export default withRouter(App);
+export default observer(withRouter(App));
