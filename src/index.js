@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "mobx-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
 import App from "./App";
 import RootStore from "./stores/RootStore";
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "mobx-react";
 
 ReactDOM.render(
   <Provider rootStore={new RootStore()}>
