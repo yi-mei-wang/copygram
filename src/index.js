@@ -5,12 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
 import App from "./App";
-import copygramStore from "./stores/CopygramStore";
+import RootStore from "./stores/RootStore";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
 
 ReactDOM.render(
-  <Provider copygramStore={copygramStore}>
+  <Provider rootStore={new RootStore()}>
     <Router>
       <App />
     </Router>
