@@ -7,12 +7,14 @@ class LoadingStore {
   setLoading(bool) {
     this.isLoading = bool;
   }
+
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+  }
 }
 
 decorate(LoadingStore, {
   isLoading: observable
 });
 
-const loadingStore = new LoadingStore();
-
-export default loadingStore;
+export default LoadingStore;

@@ -7,12 +7,14 @@ class UserStore {
   changeCurrentUser(user) {
     this.currentUser = user;
   }
+
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+  }
 }
 
 decorate(UserStore, {
   currentUser: observable
 });
 
-const userStore = new UserStore();
-
-export default userStore;
+export default UserStore;
