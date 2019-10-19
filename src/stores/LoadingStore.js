@@ -4,9 +4,8 @@ class LoadingStore {
   // @observable currentUser = null
   isLoading = true;
 
-  setIsLoading(bool) {
-    console.log("works bitch");
-    this.isLoading = bool;
+  setIsLoading() {
+    this.isLoading = !this.isLoading;
   }
 
   // constructor(rootStore) {

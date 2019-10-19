@@ -23,9 +23,9 @@ import "./App.css";
 const App = () => {
   const signal = axios.CancelToken.source();
 
-  const store = useStores();
-  console.log(store.rootStore);
-  console.log(store.rootStore.loadingStore);
+  const { rootStore } = useStores();
+  console.log(rootStore);
+  console.log(rootStore.loadingStore);
 
   const [users, setUsers] = useState();
 
@@ -33,21 +33,23 @@ const App = () => {
     const fetchAllUsers = async () => {
       const resp = await getDataWithHeaders("/users");
       setUsers([...resp.data.slice(0, 10)]);
-      store.rootStore.loadingStore.setIsLoading(false);
     };
     fetchAllUsers();
-  }, [store.rootStore.loadingStore]);
+    rootStore.loadingStore.setIsLoading();
+  }, [rootStore.loadingStore]);
 
   useEffect(() => {
     signal.cancel("Api is being cancelled");
   }, [signal]);
+
+  console.log(rootStore.loadingStore.isLoading);
 
   return (
     <>
       <Navbar />
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
-      {store.rootStore.loadingStore.isLoading ? (
+      {rootStore.loadingStore.isLoading ? (
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ height: "70vh" }}
