@@ -1,18 +1,19 @@
 import { observable, decorate } from "mobx";
 
-class UserStore {
+class LoadingStore {
   // @observable currentUser = null
   currentUser = null;
+  isLoading = true;
 
   changeCurrentUser(user) {
     this.currentUser = user;
   }
 }
 
-decorate(UserStore, {
+decorate(LoadingStore, {
   currentUser: observable
 });
 
-const userStore = new UserStore();
+const loadingStore = new LoadingStore();
 
-export default userStore;
+export default loadingStore;
