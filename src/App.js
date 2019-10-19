@@ -20,7 +20,7 @@ import useStores from "./hooks/useStores";
 // Stylesheet
 import "./App.css";
 
-const App = () => {
+const App = observer(() => {
   const signal = axios.CancelToken.source();
 
   const rootStore = useStores();
@@ -85,6 +85,6 @@ const App = () => {
       </Link>
     </>
   );
-};
+});
 
-export default observer(withRouter(App));
+export default withRouter(App);

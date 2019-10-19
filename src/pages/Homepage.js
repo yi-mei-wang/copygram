@@ -10,7 +10,7 @@ export const Homepage = ({ setLoading }) => {
     const fetchUsers = async () => {
       const resp = await getDataWithHeaders(APIUrls.allUsers);
       setUsers(resp.data);
-      setLoading();
+      setLoading(false);
     };
 
     fetchUsers();
