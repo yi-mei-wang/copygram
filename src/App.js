@@ -36,7 +36,7 @@ const App = () => {
       setUsers([...resp.data.slice(0, 10)]);
     };
     fetchAllUsers();
-    loadingStore.setIsLoading();
+    loadingStore.setIsLoading(false);
   }, [loadingStore]);
 
   useEffect(() => {
