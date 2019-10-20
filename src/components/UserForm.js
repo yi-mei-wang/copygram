@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+// Components
 import { ButtonWithLoader } from "../styled/ButtonWithLoader";
+// Hooks
+import useStores from "../hooks/useStores";
+// Helpers/constants
 import { postUserData } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 
-export const UserForm = ({ setCurrentUser, history, match }) => {
+export const UserForm = ({ history, match }) => {
   const key = match.url.replace("/", "");
   const APIPath = APIUrls[key];
+
+  const {
+    rootStore: { userStore }
+  } = useStores();
+
+  console.log(userStore);
 
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
@@ -32,12 +42,12 @@ export const UserForm = ({ setCurrentUser, history, match }) => {
     console.log(userInputs);
     try {
       const { auth_token, user } = await postUserData(APIPath, userInputs);
-
       // TODO: GET JWT FROM STATE
 
       localStorage.setItem("jwt", auth_token);
 
-      setCurrentUser(user);
+      // userStore.setCurrentUser(user);
+      userStore.setCurrentUser(user);
 
       history.push({
         pathname: "/"

@@ -5,13 +5,13 @@ class UserStore {
   currentUser = null;
   users = [];
 
-  setCurrentUser(user) {
+  setCurrentUser = user => {
     this.currentUser = user;
-  }
+  };
 
-  setUsers(users) {
+  setUsers = users => {
     this.users = [...users];
-  }
+  };
 
   // constructor(rootStore) {
   //   this.rootStore = rootStore;
@@ -19,7 +19,10 @@ class UserStore {
 }
 
 decorate(UserStore, {
-  currentUser: observable
+  currentUser: observable,
+  users: observable,
+  setCurrentUser: observable,
+  setUsers: observable
 });
 
 export default UserStore;

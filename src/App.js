@@ -11,7 +11,7 @@ import { LogoutPage } from "./pages/LogoutPage";
 import UploadPage from "./pages/UploadPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
-import { PrivateRoute } from "./helpers/privateRoute";
+import { PrivateRoute } from "./helpers/PrivateRoute";
 // Hooks
 import useStores from "./hooks/useStores";
 // Stylesheet
@@ -40,9 +40,7 @@ const App = () => {
           key="login"
           exact
           path="/login"
-          component={props => (
-            <LoginPage {...props} setCurrentUser={setCurrentUser} />
-          )}
+          component={props => <LoginPage {...props} />}
         />
         <Route
           key="signup"
