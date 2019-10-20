@@ -22,7 +22,7 @@ const App = () => {
 
   const {
     rootStore: {
-      loadingStore: { setLoading },
+      loadingStore: { setIsLoading },
       userStore: { currentUser, setCurrentUser }
     }
   } = useStores();
@@ -59,7 +59,7 @@ const App = () => {
           exact
           path="/users/:id"
           render={props => (
-            <UserProfilePage {...props} setLoading={setLoading} />
+            <UserProfilePage {...props} setIsLoading={setIsLoading} />
           )}
         />
         <PrivateRoute path="/upload" render={UploadPage} />
