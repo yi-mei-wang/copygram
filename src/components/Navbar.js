@@ -12,13 +12,8 @@ import {
   DropdownMenu,
   DropdownToggle
 } from "reactstrap";
-import useStores from "../hooks/useStores";
 
-export const MyNavbar = observer(() => {
-  const {
-    rootStore: { userStore: currentUser }
-  } = useStores();
-
+export const MyNavbar = observer(({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
