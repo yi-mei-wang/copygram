@@ -4,6 +4,7 @@ class UserStore {
   // @observable currentUser = null
   currentUser = null;
   users = [];
+  jwt = null;
 
   setCurrentUser = user => {
     this.currentUser = user;
@@ -11,6 +12,10 @@ class UserStore {
 
   setUsers = users => {
     this.users = [...users];
+  };
+
+  setJwt = jwt => {
+    this.jwt = jwt;
   };
 
   // constructor(rootStore) {

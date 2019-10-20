@@ -1,52 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { APIUrls } from "../constants/APIUrls";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { UserProfileCard } from "../components/UserProfileCard";
 import { UserImages } from "../components/UserImages";
 
-export class UserProfilePage extends React.Component {
-  state = {
-    imgUrls: [],
-    username: "",
-    profileImage: null
-  };
+export const UserProfilePage = ({ match, setLoading }) => {
+  const [postUrls, setPostUrls] = useState([]);
+  const [username, setUsername] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
-  id = this.props.match.params.id;
+  const id = match.params.id;
 
-  async componentDidMount() {
-    this.props.setLoading();
-    let headers = this.id === "me";
+  useEffect(() => {
+    let withHeaders = this.id === "me";
 
     let key = this.id === "me" ? "profile_picture" : "profileImage";
 
     let path = `${APIUrls.userInfo}${this.id}`;
 
-    try {
-      const resp = await getDataWithHeaders(path, headers);
+    const resp = getDataWithHeaders(path, withHeaders);
+    setUsername(resp.data.username);
+    setProfileImage(resp.data[key]);
 
-      this.setState({
-        username: resp.data.username,
-        profileImage: resp.data[key]
-      });
+    setLoading();
+  }, []);
 
-      this.props.setLoading();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  render() {
-    const { username, profileImage } = this.state;
-    return (
-      <>
-        <UserProfileCard
-          username={username}
-          profileImage={profileImage}
-          id={this.id}
-        />
-        <div className="d-flex justify-content-center">
-          <UserImages id={this.id} />
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <UserProfileCard
+        username={username}
+        profileImage={profileImage}
+        id={id}
+      />
+      <div className="d-flex justify-content-center">
+        <UserImages id={id} />
+      </div>
+    </>
+  );
+};

@@ -18,8 +18,8 @@ const postUserData = async (url, credentials) => {
   }
 };
 
-const getDataWithHeaders = (path, headers) => {
-  headers = headers && {
+const getDataWithHeaders = (path, withHeaders) => {
+  const headers = withHeaders && {
     headers: {
       Authorization: `Bearer ${AUTH_TOKEN}`
     }

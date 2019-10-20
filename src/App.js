@@ -22,7 +22,7 @@ const App = () => {
 
   const {
     rootStore: {
-      loadingStore,
+      loadingStore: { setLoading },
       userStore: { currentUser, setCurrentUser }
     }
   } = useStores();
@@ -55,7 +55,13 @@ const App = () => {
             <LogoutPage {...props} setCurrentUser={setCurrentUser} />
           )}
         />
-        <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
+        <PrivateRoute
+          exact
+          path="/users/:id"
+          render={props => (
+            <UserProfilePage {...props} setLoading={setLoading} />
+          )}
+        />
         <PrivateRoute path="/upload" render={UploadPage} />
       </Switch>
 

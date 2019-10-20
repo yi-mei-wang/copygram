@@ -17,8 +17,6 @@ export const UserForm = ({ history, match }) => {
     rootStore: { userStore }
   } = useStores();
 
-  console.log(userStore);
-
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   const [userInputs, setUserInputs] = useState({
@@ -45,6 +43,7 @@ export const UserForm = ({ history, match }) => {
       // TODO: GET JWT FROM STATE
 
       localStorage.setItem("jwt", auth_token);
+      localStorage.setItem("currentUser", user);
 
       // userStore.setCurrentUser(user);
       userStore.setCurrentUser(user);
