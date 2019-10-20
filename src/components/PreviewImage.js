@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as DeleteButton } from "../delete-button.svg";
+// import { ReactComponent as DeleteButton } from "../delete-button.svg";
 
 const Container = styled.div`
   width: 100%;

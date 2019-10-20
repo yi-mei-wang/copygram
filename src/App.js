@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { withRouter, Switch, Route, Link } from "react-router-dom";
 import { observer } from "mobx-react";
 // Components
@@ -12,10 +11,9 @@ import { LogoutPage } from "./pages/LogoutPage";
 import UploadPage from "./pages/UploadPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
-import { getDataWithHeaders } from "./helpers/APICalls";
 import { PrivateRoute } from "./helpers/privateRoute";
 // Hooks
-import useStores from "./hooks/useStores";
+// import useStores from "./hooks/useStores";
 // Stylesheet
 import "./App.css";
 
@@ -25,21 +23,6 @@ const App = () => {
   // const {
   //   rootStore: { loadingStore, userStore }
   // } = useStores();
-
-  // const [users, setUsers] = useState();
-
-  // useEffect(() => {
-  //   const fetchAllUsers = async () => {
-  //     const resp = await getDataWithHeaders("/users");
-  //     setUsers([...resp.data.slice(0, 10)]);
-  //   };
-  //   fetchAllUsers();
-  //   loadingStore.setIsLoading(false);
-  // }, [loadingStore]);
-
-  // useEffect(() => {
-  //   signal.cancel("Api is being cancelled");
-  // }, [signal]);
 
   return (
     <>
