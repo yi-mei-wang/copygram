@@ -4,7 +4,6 @@ import { withRouter, Switch, Route, Link } from "react-router-dom";
 import { observer } from "mobx-react";
 // Components
 import { MyNavbar as Navbar } from "./components/Navbar";
-import { Loader } from "./styled/Loader";
 import { AddButton } from "./styled/AddButton";
 // Pages
 import { Homepage } from "./pages/Homepage";
@@ -21,29 +20,26 @@ import useStores from "./hooks/useStores";
 import "./App.css";
 
 const App = () => {
-  const signal = axios.CancelToken.source();
+  // const signal = axios.CancelToken.source();
 
   const {
     rootStore: { loadingStore, userStore }
   } = useStores();
-  console.log(loadingStore);
 
   const [users, setUsers] = useState();
 
-  useEffect(() => {
-    const fetchAllUsers = async () => {
-      const resp = await getDataWithHeaders("/users");
-      setUsers([...resp.data.slice(0, 10)]);
-    };
-    fetchAllUsers();
-    loadingStore.setIsLoading(false);
-  }, [loadingStore]);
+  // useEffect(() => {
+  //   const fetchAllUsers = async () => {
+  //     const resp = await getDataWithHeaders("/users");
+  //     setUsers([...resp.data.slice(0, 10)]);
+  //   };
+  //   fetchAllUsers();
+  //   loadingStore.setIsLoading(false);
+  // }, [loadingStore]);
 
-  useEffect(() => {
-    signal.cancel("Api is being cancelled");
-  }, [signal]);
-
-  console.log(loadingStore.isLoading);
+  // useEffect(() => {
+  //   signal.cancel("Api is being cancelled");
+  // }, [signal]);
 
   return (
     <>
@@ -63,12 +59,12 @@ const App = () => {
           component={props => <LoginPage {...props} />}
         />
         <Route path="/logout" render={props => <LogoutPage {...props} />} />
-        <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
         <PrivateRoute
           exact
           path="/"
-          render={props => <Homepage users={users} {...props} />}
+          render={props => <Homepage {...props} />}
         />
+        <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
         <PrivateRoute path="/upload" render={UploadPage} />
       </Switch>
 
