@@ -65,9 +65,11 @@ const App = () => {
         <PrivateRoute path="/upload" render={UploadPage} />
       </Switch>
 
-      <Link to="/upload">
-        <AddButton />
-      </Link>
+      {currentUser && (
+        <Link to="/upload">
+          <AddButton />
+        </Link>
+      )}
     </>
   );
 };

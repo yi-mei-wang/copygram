@@ -21,10 +21,10 @@ export const UserProfilePage = ({ match, setIsLoading }) => {
       const resp = await getDataWithHeaders(path, withHeaders);
       setUsername(resp.data.username);
       setProfileImage(resp.data[key]);
+      setIsLoading();
     };
 
     getUserInfo();
-    setIsLoading();
   }, [setIsLoading, id]);
 
   return (
