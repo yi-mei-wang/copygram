@@ -4,25 +4,28 @@ import { getDataWithHeaders } from "../helpers/APICalls";
 import { UserProfileCard } from "../components/UserProfileCard";
 import { UserImages } from "../components/UserImages";
 
-export const UserProfilePage = ({ match, setLoading }) => {
+export const UserProfilePage = ({ match, setIsLoading }) => {
   const [username, setUsername] = useState("");
   const [profileImage, setProfileImage] = useState("");
 
   const id = match.params.id;
 
   useEffect(() => {
-    let withHeaders = this.id === "me";
+    let withHeaders = id === "me";
 
-    let key = this.id === "me" ? "profile_picture" : "profileImage";
+    let key = id === "me" ? "profile_picture" : "profileImage";
 
-    let path = `${APIUrls.userInfo}${this.id}`;
+    let path = `${APIUrls.userInfo}${id}`;
 
-    const resp = getDataWithHeaders(path, withHeaders);
-    setUsername(resp.data.username);
-    setProfileImage(resp.data[key]);
+    const getUserInfo = async () => {
+      const resp = await getDataWithHeaders(path, withHeaders);
+      setUsername(resp.data.username);
+      setProfileImage(resp.data[key]);
+    };
 
-    setLoading();
-  }, [setLoading]);
+    getUserInfo();
+    setIsLoading();
+  }, [setIsLoading, id]);
 
   return (
     <>
