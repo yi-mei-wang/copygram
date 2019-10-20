@@ -5,7 +5,6 @@ import { UserProfileCard } from "../components/UserProfileCard";
 import { UserImages } from "../components/UserImages";
 
 export const UserProfilePage = ({ match, setLoading }) => {
-  const [postUrls, setPostUrls] = useState([]);
   const [username, setUsername] = useState("");
   const [profileImage, setProfileImage] = useState("");
 
@@ -23,7 +22,7 @@ export const UserProfilePage = ({ match, setLoading }) => {
     setProfileImage(resp.data[key]);
 
     setLoading();
-  }, []);
+  }, [setLoading]);
 
   return (
     <>
