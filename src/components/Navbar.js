@@ -29,19 +29,21 @@ export const MyNavbar = observer(() => {
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">Copygram</NavbarBrand>
+
         <NavbarToggler onClick={toggle} />
+
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <Link className="nav-link" to="/users/me">
               My Profile
             </Link>
+
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Account Management
               </DropdownToggle>
-              <DropdownMenu right>
-                {/* // TODO: GET JWT FROM STATE */}
 
+              <DropdownMenu right>
                 {currentUser ? (
                   <DropdownItem>
                     <Link to="/logout">Log Out</Link>
