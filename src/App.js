@@ -21,12 +21,15 @@ const App = () => {
   // const signal = axios.CancelToken.source();
 
   const {
-    rootStore: { loadingStore, userStore }
+    rootStore: {
+      loadingStore,
+      userStore: { currentUser, setCurrentUser }
+    }
   } = useStores();
 
   return (
     <>
-      <Navbar />
+      <Navbar currentUser={currentUser} />
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
 
@@ -37,7 +40,9 @@ const App = () => {
           key="login"
           exact
           path="/login"
-          component={props => <LoginPage {...props} />}
+          component={props => (
+            <LoginPage {...props} setCurrentUser={setCurrentUser} />
+          )}
         />
         <Route
           key="signup"
@@ -48,7 +53,9 @@ const App = () => {
         <PrivateRoute
           exact
           path="/logout"
-          render={props => <LogoutPage {...props} userStore={userStore} />}
+          render={props => (
+            <LogoutPage {...props} setCurrentUser={setCurrentUser} />
+          )}
         />
         <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
         <PrivateRoute path="/upload" render={UploadPage} />

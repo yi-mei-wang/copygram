@@ -5,7 +5,7 @@ class UserStore {
   currentUser = null;
   users = [];
 
-  changeCurrentUser(user) {
+  setCurrentUser(user) {
     this.currentUser = user;
   }
 
