@@ -12,8 +12,13 @@ import {
   DropdownMenu,
   DropdownToggle
 } from "reactstrap";
+import useStores from "../hooks/useStores";
 
 export const MyNavbar = observer(() => {
+  const {
+    rootStore: { userStore: currentUser }
+  } = useStores();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -37,7 +42,7 @@ export const MyNavbar = observer(() => {
               <DropdownMenu right>
                 {/* // TODO: GET JWT FROM STATE */}
 
-                {this.props.currentUser !== null ? (
+                {currentUser ? (
                   <DropdownItem>
                     <Link to="/logout">Log Out</Link>
                   </DropdownItem>
