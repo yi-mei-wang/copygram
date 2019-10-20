@@ -50,41 +50,28 @@ const App = () => {
       <Navbar />
       {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
-      {loadingStore.isLoading ? (
-        <div
-          className="d-flex justify-content-center align-items-center"
-          style={{ height: "70vh" }}
-        >
-          <Loader
-            dark="#1d3f72"
-            light="#5699d2"
-            width="200px"
-            height="200px"
-            className="mx-auto"
-          />
-        </div>
-      ) : (
-        <Switch>
-          <Route
-            key="login"
-            path="/login"
-            component={props => <LoginPage {...props} />}
-          />
-          <Route
-            key="signup"
-            path="/signup"
-            component={props => <LoginPage {...props} />}
-          />
-          <Route path="/logout" render={props => <LogoutPage {...props} />} />
-          <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
-          <PrivateRoute
-            exact
-            path="/"
-            render={props => <Homepage users={users} {...props} />}
-          />
-          <PrivateRoute path="/upload" render={UploadPage} />
-        </Switch>
-      )}
+
+      <Switch>
+        <Route
+          key="login"
+          path="/login"
+          component={props => <LoginPage {...props} />}
+        />
+        <Route
+          key="signup"
+          path="/signup"
+          component={props => <LoginPage {...props} />}
+        />
+        <Route path="/logout" render={props => <LogoutPage {...props} />} />
+        <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
+        <PrivateRoute
+          exact
+          path="/"
+          render={props => <Homepage users={users} {...props} />}
+        />
+        <PrivateRoute path="/upload" render={UploadPage} />
+      </Switch>
+
       <Link to="/upload">
         <AddButton />
       </Link>

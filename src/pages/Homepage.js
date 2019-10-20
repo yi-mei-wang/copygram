@@ -5,7 +5,7 @@ import { UserProfileCard } from "../components/UserProfileCard";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 
-export const Homepage = observer(() => {
+export const Homepage = observer(props => {
   const [users, setUsers] = useState([]);
 
   const store = useStores();
