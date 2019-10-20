@@ -18,14 +18,11 @@ export const Homepage = observer(() => {
     const fetchUsers = async () => {
       const resp = await getDataWithHeaders(APIUrls.allUsers);
       userStore.setUsers(resp.data.slice(0, 10));
+      loadingStore.setIsLoading(false);
     };
 
     fetchUsers();
-
-    loadingStore.setIsLoading(false);
   }, [loadingStore, userStore]);
-
-  console.log(loadingStore.isLoading);
 
   return (
     <>

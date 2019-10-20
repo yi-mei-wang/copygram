@@ -22,11 +22,11 @@ import "./App.css";
 const App = () => {
   // const signal = axios.CancelToken.source();
 
-  const {
-    rootStore: { loadingStore, userStore }
-  } = useStores();
+  // const {
+  //   rootStore: { loadingStore, userStore }
+  // } = useStores();
 
-  const [users, setUsers] = useState();
+  // const [users, setUsers] = useState();
 
   // useEffect(() => {
   //   const fetchAllUsers = async () => {
@@ -48,21 +48,24 @@ const App = () => {
           renders the first one that matches the current URL. */}
 
       <Switch>
+        <PrivateRoute exact path="/" render={Homepage} />
+
         <Route
           key="login"
+          exact
           path="/login"
           component={props => <LoginPage {...props} />}
         />
         <Route
           key="signup"
+          exact
           path="/signup"
           component={props => <LoginPage {...props} />}
         />
-        <Route path="/logout" render={props => <LogoutPage {...props} />} />
         <PrivateRoute
           exact
-          path="/"
-          render={props => <Homepage {...props} />}
+          path="/logout"
+          render={props => <LogoutPage {...props} />}
         />
         <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
         <PrivateRoute path="/upload" render={UploadPage} />
