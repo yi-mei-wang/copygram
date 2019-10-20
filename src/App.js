@@ -13,16 +13,16 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 // Helpers
 import { PrivateRoute } from "./helpers/privateRoute";
 // Hooks
-// import useStores from "./hooks/useStores";
+import useStores from "./hooks/useStores";
 // Stylesheet
 import "./App.css";
 
 const App = () => {
   // const signal = axios.CancelToken.source();
 
-  // const {
-  //   rootStore: { loadingStore, userStore }
-  // } = useStores();
+  const {
+    rootStore: { loadingStore, userStore }
+  } = useStores();
 
   return (
     <>
@@ -48,7 +48,7 @@ const App = () => {
         <PrivateRoute
           exact
           path="/logout"
-          render={props => <LogoutPage {...props} />}
+          render={props => <LogoutPage {...props} userStore={userStore} />}
         />
         <PrivateRoute exact path="/users/:id" render={UserProfilePage} />
         <PrivateRoute path="/upload" render={UploadPage} />

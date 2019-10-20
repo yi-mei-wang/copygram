@@ -2,9 +2,9 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { getThemeProps } from "@material-ui/styles";
 
-export const LogoutPage = ({ setCurrentUser }) => {
+export const LogoutPage = ({ userStore }) => {
   localStorage.removeItem("jwt");
-  setCurrentUser(null);
+  userStore.setCurrentUser(null);
   return (
     <Redirect
       to={{ pathname: "/login", state: { from: getThemeProps.location } }}
