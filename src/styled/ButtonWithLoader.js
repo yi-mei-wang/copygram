@@ -23,7 +23,7 @@ export function ButtonWithLoader({ isLoading, children, ...props }) {
 
   /* Capture the dimensions of the button before the loading happens
   so it doesn’t change size.
-  These hooks can be put in a seprate file. */
+  These hooks can be put in a separate file. */
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const ref = useRef(null);

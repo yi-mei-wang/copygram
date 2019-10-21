@@ -5,6 +5,7 @@ class LoadingStore {
   isLoading = true;
 
   setIsLoading = bool => {
+    console.log("boo", bool);
     this.isLoading = bool;
   };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter, Switch, Route, Link } from "react-router-dom";
 import { observer } from "mobx-react";
 // Components
@@ -26,6 +26,12 @@ const App = () => {
       userStore: { currentUser, setCurrentUser }
     }
   } = useStores();
+
+  useEffect(() => {
+    localStorage.getItem("jwt");
+    let currentUser = localStorage.getItem("currentUser");
+    setCurrentUser(currentUser);
+  }, [setCurrentUser]);
 
   return (
     <>

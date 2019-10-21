@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { APIUrls } from "../constants/APIUrls";
-import { getDataWithHeaders } from "../helpers/APICalls";
+// Components
 import { UserProfileCard } from "../components/UserProfileCard";
 import { UserImages } from "../components/UserImages";
+// Helpers/constants
+import { APIUrls } from "../constants/APIUrls";
+import { getDataWithHeaders } from "../helpers/APICalls";
+import { withLoader } from "../hocs/withLoader";
 
-export const UserProfilePage = ({ match, setIsLoading }) => {
+export const UserProfilePage = withLoader(({ match, setIsLoading }) => {
   const [username, setUsername] = useState("");
   const [profileImage, setProfileImage] = useState("");
 
   const id = match.params.id;
 
   useEffect(() => {
+    setIsLoading(true);
     let withHeaders = id === "me";
 
     let key = id === "me" ? "profile_picture" : "profileImage";
@@ -21,7 +25,7 @@ export const UserProfilePage = ({ match, setIsLoading }) => {
       const resp = await getDataWithHeaders(path, withHeaders);
       setUsername(resp.data.username);
       setProfileImage(resp.data[key]);
-      setIsLoading();
+      setIsLoading(false);
     };
 
     getUserInfo();
@@ -39,4 +43,4 @@ export const UserProfilePage = ({ match, setIsLoading }) => {
       </div>
     </>
   );
-};
+});
