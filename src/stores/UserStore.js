@@ -25,9 +25,9 @@ class UserStore {
 
 decorate(UserStore, {
   currentUser: observable,
-  users: observable,
-  setCurrentUser: observable,
-  setUsers: observable
+  users: observable
+  // setCurrentUser: observable,
+  // setUsers: observable
 });
 
 export default UserStore;

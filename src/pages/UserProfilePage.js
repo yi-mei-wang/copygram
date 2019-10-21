@@ -7,7 +7,7 @@ import { APIUrls } from "../constants/APIUrls";
 import { getDataWithHeaders } from "../helpers/APICalls";
 import { withLoader } from "../hocs/withLoader";
 
-export const UserProfilePage = withLoader(({ match, setIsLoading }) => {
+export const UserProfilePage = ({ match, setIsLoading }) => {
   const [username, setUsername] = useState("");
   const [profileImage, setProfileImage] = useState("");
 
@@ -43,4 +43,4 @@ export const UserProfilePage = withLoader(({ match, setIsLoading }) => {
       </div>
     </>
   );
-});
+};

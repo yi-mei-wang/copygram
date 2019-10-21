@@ -10,26 +10,25 @@ import { getDataWithHeaders } from "../helpers/APICalls";
 import { APIUrls } from "../constants/APIUrls";
 import { withLoader } from "../hocs/withLoader";
 
-export const Homepage = observer(
-  withLoader(() => {
-    const {
-      rootStore: { loadingStore, userStore }
-    } = useStores();
+export const Homepage = observer(() => {
+  const {
+    rootStore: { loadingStore, userStore }
+  } = useStores();
 
-    useEffect(() => {
-      const fetchUsers = async () => {
-        const resp = await getDataWithHeaders(APIUrls.allUsers);
-        userStore.setUsers(resp.data.slice(0, 10));
-        console.log(resp);
-        loadingStore.setIsLoading(false);
-      };
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const resp = await getDataWithHeaders(APIUrls.allUsers);
+      userStore.setUsers(resp.data.slice(0, 10));
+      console.log(userStore.users);
+      loadingStore.setIsLoading(false);
+    };
 
-      fetchUsers();
-    }, [loadingStore, userStore]);
+    fetchUsers();
+  }, [loadingStore, userStore]);
 
-    return (
-      <>
-        {/* {loadingStore.isLoading ? (
+  return (
+    <>
+      {/* {loadingStore.isLoading ? (
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ height: "70vh" }}
@@ -43,19 +42,17 @@ export const Homepage = observer(
           />
         </div>
       ) : ( */}
-        <h1>hello</h1>
-        <div>
-          {userStore.users.map((user, index) => (
-            <UserProfileCard
-              username={user.username}
-              profileImage={user.profileImage}
-              id={user.id}
-              key={index}
-            />
-          ))}
-        </div>
-        {/* )} */}
-      </>
-    );
-  })
-);
+      <div>
+        {userStore.users.map((user, index) => (
+          <UserProfileCard
+            username={user.username}
+            profileImage={user.profileImage}
+            id={user.id}
+            key={index}
+          />
+        ))}
+      </div>
+      {/* )} */}
+    </>
+  );
+});

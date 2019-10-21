@@ -28,9 +28,9 @@ const App = () => {
   } = useStores();
 
   useEffect(() => {
-    localStorage.getItem("jwt");
-    let currentUser = localStorage.getItem("currentUser");
-    setCurrentUser(currentUser);
+    // localStorage.getItem("jwt");
+    let user = JSON.parse(localStorage.getItem("currentUser"));
+    setCurrentUser(user);
   }, [setCurrentUser]);
 
   return (

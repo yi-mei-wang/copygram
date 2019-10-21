@@ -37,13 +37,12 @@ export const UserForm = ({ history, match }) => {
 
   const postData = async () => {
     // validate user input
-    console.log(userInputs);
     try {
       const { auth_token, user } = await postUserData(APIPath, userInputs);
       // TODO: GET JWT FROM STATE
 
       localStorage.setItem("jwt", auth_token);
-      localStorage.setItem("currentUser", user);
+      localStorage.setItem("currentUser", JSON.stringify(user));
 
       // userStore.setCurrentUser(user);
       userStore.setCurrentUser(user);

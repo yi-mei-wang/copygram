@@ -8,15 +8,17 @@ import useStores from "../hooks/useStores";
 const PrivateRoute = observer(({ render: Component, ...rest }) => {
   const {
     rootStore: {
-      userStore: { currentUser }
+      userStore: { currentUser, setCurrentUser }
     }
   } = useStores();
+
+  let user = JSON.parse(localStorage.getItem("currentUser"));
 
   return (
     <Route
       {...rest}
       render={props =>
-        currentUser ? (
+        user ? (
           <Component {...props} {...rest} />
         ) : (
           <Redirect
